@@ -1,8 +1,20 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia} from "pinia";
-const pinia = createPinia()
 
-createApp(App).use(pinia).mount('#app')
+import router from "./router";
+//引入初始化文件样式
+import '@/styles/common.scss'
+// import {getBanner} from "@/apis/bannerAPI";
+// 测试接口
+// getBanner().then(res => {
+//     console.log(res);
+// })
+const pinia = createPinia()
+const app = createApp(App)
+app.use(router)
+app.use(pinia)
+app.mount('#app')
+
+// createApp(App).use(pinia).mount('#app')
+

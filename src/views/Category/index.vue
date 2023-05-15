@@ -1,10 +1,10 @@
 <template>
-$END$
+<div>我是关于文件</div>
 </template>
 
 <script>
 export default {
-name: "index"
+  name: "index"
 }
 </script>
 

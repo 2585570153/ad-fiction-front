@@ -4,7 +4,7 @@
       <el-header class="header">
         <div class="affix-container">
           <el-affix target=".affix-container" :offset="1">
-        <navigation />
+        <navigation navid="1"/>
           </el-affix>
         </div>
       </el-header>
@@ -40,6 +40,8 @@ import RankingList from "@/views/Layout/components/RankingList.vue";
 .bodymain{
 
   padding: 30px 159px;
+  background-image: url(/src/assets/bg.jpg);
+  background-repeat: no-repeat;
 
 }
 .header{

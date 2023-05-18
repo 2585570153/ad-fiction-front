@@ -27,7 +27,13 @@
 import Navigation from "@/views/Layout/components/Navigation.vue";
 import HomePage from "@/views/detail/components/HomePage.vue";
 import Chapter from "@/views/detail/components/Chapter.vue";
-
+import {onMounted} from "vue";
+function created(){
+  window.scrollTo(0, 0);
+}
+onMounted(() => {
+  created();
+});
 </script>
 
 <style scoped >
@@ -41,8 +47,8 @@ import Chapter from "@/views/detail/components/Chapter.vue";
 .bodymain{
 
   padding: 30px 159px;
-  /*background-image: url(/src/assets/bg.jpg);*/
-  /*background-repeat: no-repeat;*/
+  background-image: url(/src/assets/bg1.jpg);
+  background-repeat: no-repeat;
 }
 .header{
   padding: 0;

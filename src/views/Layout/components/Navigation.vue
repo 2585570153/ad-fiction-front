@@ -51,5 +51,6 @@ const handleSelect = (key: string, keyPath: string[]) => {
 }
 .link {
   text-decoration: none; /* 去掉下划线 */
+  color: inherit; /* 继承父元素的文本颜色 */
 }
 </style>

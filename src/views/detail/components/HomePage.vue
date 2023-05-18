@@ -6,7 +6,7 @@
           <div class="item">
             <div class="imges">
               <div class="caption">&nbsp;免费&nbsp;</div>
-              <img  src="http://cloud.aiheadn.cn/fiction/fengmian/news/1.jpg">
+              <img  :src= "fictionData.prcture">
             </div>
           </div>
 
@@ -14,9 +14,9 @@
 
         <el-main class="main">
           <div class="title" >
-            <div class="fiction">斗罗：乖孙快来爷爷我是封号斗罗&nbsp;&nbsp;</div>
-            <div class="author">颍川种花兔 著</div>
-            <div class="fictiontime">&nbsp;&nbsp; 更新时间：2023-05-16 22:27:32</div>
+            <div class="fiction">{{ fictionData.name }}&nbsp;&nbsp;</div>
+            <div class="author">{{ fictionData.author }} 著</div>
+            <div class="fictiontime">&nbsp;&nbsp;更新时间:{{ fictionData.creatTime }}</div>
           </div >
           <div class="bigclass" >
             <el-tag
@@ -27,10 +27,11 @@
                 effect="dark"
                 size="large"
             >
-              {{ item.label }}
+              {{ item.label  }}
+
             </el-tag>
           </div >
-          <div class="brief">叶天得了癌症，时日无多。未曾想，去世三年的爷爷，忽然联系上了叶天。爷爷说当年他死后，转生斗罗大陆。如今晋级封号斗罗，即将成为武魂殿长老，让叶天赶快过去。叶天感慨人心不古，他都快死了，竟被电话诈骗。直至大限将行，再次睁眼。“玩真的？！”………………爷爷是封号斗罗，扶持爷爷上位武魂殿。</div>
+          <div class="brief">{{fictionData.brief}}...</div>
           <div class="get">
             <el-button  color="#0BAEFDFF" class="button1"  size="large" type="primary" round>开始阅读</el-button>
             <el-button  color="#E0F3FCFF" class="button2" size="large" type="danger" round>加入书架</el-button>
@@ -45,14 +46,26 @@
 
 <script lang="ts" setup >
 
-import { ref } from 'vue'
+import {onMounted, ref} from 'vue'
 import type { TagProps } from 'element-plus'
+import { getFictionAPI } from '/src/apis/fictionAPI'
+import {useRoute} from "vue-router";
+const fictionData = ref({})
+const route = useRoute()
+const getFiction = async () =>{
+  const  res = await getFictionAPI(route.params.id)
+  fictionData.value = res.data
+}
+
+onMounted(()=>getFiction())
+
+
 
 type Item = { type: TagProps['type']; label: string }
-
 const items = ref<Array<Item>>([
-  { type: '', label: '轻小说' },
-  { type: '', label: '男生' }
+  { type: '', label: '免费'},
+  { type: '', label: '小说' }
+
 ])
 </script>
 
@@ -113,7 +126,9 @@ img{
 .brief{
   margin-top: 20px; /* 设置上边距为 20 像素 */
   width: 610px;
+  height: 124px;
   color: #595858;
+  overflow: hidden; /* 超出部分隐藏 */
 
 }
 .get{

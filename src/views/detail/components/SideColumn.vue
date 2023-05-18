@@ -3,36 +3,22 @@
     <br>
     <div class="sidecolumn-left">
       精选热门书>
-      <div class="sidecolumn-item">
-      <div class="sidecolumn-imges">
+      <div class="sidecolumn-item" v-for="item in recommendData">
+        <router-link :to="'/detail/'+item.fictionId" class="link">
+        <div class="sidecolumn-imges">
         <div class="sidecolumn-caption">&nbsp;免费&nbsp;</div>
-        <img  src="http://cloud.aiheadn.cn/fiction/fengmian/news/3.jpg">
+        <img  :src= item.prcture>
       </div>
-      <div class="sidecolumn-content">
-        <div class="sidecolumn-title">这是一个书名1111</div>
-        <div class="sidecolumn-author">这是一个作者</div>
+        </router-link>
+        <router-link :to="'/detail/'+item.fictionId" class="link">
+      <div class="sidecolumn-content" >
+        <div class="sidecolumn-title">{{ item.name }}</div>
+        <div class="sidecolumn-author">{{ item.author }}</div>
+
       </div>
+        </router-link>
     </div>
-      <div class="sidecolumn-item">
-        <div class="sidecolumn-imges">
-          <div class="sidecolumn-caption">&nbsp;免费&nbsp;</div>
-          <img  src="http://cloud.aiheadn.cn/fiction/fengmian/news/3.jpg">
-        </div>
-        <div class="sidecolumn-content">
-          <div class="sidecolumn-title">这是一个书名1111</div>
-          <div class="sidecolumn-author">这是一个作者</div>
-        </div>
-      </div>
-      <div class="sidecolumn-item">
-        <div class="sidecolumn-imges">
-          <div class="sidecolumn-caption">&nbsp;免费&nbsp;</div>
-          <img  src="http://cloud.aiheadn.cn/fiction/fengmian/news/3.jpg">
-        </div>
-        <div class="sidecolumn-content">
-          <div class="sidecolumn-title">这是一个书名1111</div>
-          <div class="sidecolumn-author">这是一个作者</div>
-        </div>
-      </div>
+
       <br>
     </div>
   </div>
@@ -40,12 +26,26 @@
 </template>
 
 <script setup>
-
+import {onMounted, ref} from "vue";
+import {useRoute} from "vue-router";
+import{getRecommendAPI} from "/src/apis/RecommendAPI";
+const recommendData = ref([])
+const route = useRoute()
+const getrecommend = async () =>{
+  const  res = await getRecommendAPI(6,"男生")
+  recommendData.value = res.data
+}
+onMounted(() => {
+  getrecommend();
+});
 
 </script>
 
 <style scoped lang="scss">
-
+.link{
+  text-decoration: none; /* 去掉下划线 */
+  color: inherit; /* 继承父元素的文本颜色 */
+}
 .sidecolumn{
   border-radius: 3%; /*圆角 */
   background-color: #F3F3F5FF;

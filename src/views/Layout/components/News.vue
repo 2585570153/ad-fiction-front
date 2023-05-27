@@ -1,6 +1,6 @@
 <template>
 <div class="new">
-    <img class="img" src="src/assets/news.png">
+    <img class="img" src="http://cloud.aiheadn.cn/fiction/news.png">
   <div class="container">
     <p class="title">凛冬之刃（范伟、秦昊、李庚希主演《漫长的季节》原创故事）。</p>
     <p class="cont">冬日，东北桦城。一起离奇的套牌车肇事逃逸案，与那起二十年前的桦城钢铁厂碎尸悬案冥冥

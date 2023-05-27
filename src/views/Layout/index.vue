@@ -11,7 +11,7 @@
       <el-main class="bodymain">
         <Banner />
         <News/>
-        <Boutique title="男生精选" sub-title="强力推荐，品质保证" href="url(/src/assets/column-bg1.png)">
+        <Boutique title="男生精选" sub-title="强力推荐，品质保证" href="url(http://cloud.aiheadn.cn/fiction/assets/column-bg1.png)">
             <div class="item"
                  v-for="item in recommendData1"
             >
@@ -29,8 +29,8 @@
               </router-link>
             </div>
         </Boutique>
-        <RankingList href="url(/src/assets/rank-bg0.png)"/>
-        <Boutique title="女生精选" sub-title="强力推荐，品质保证" href="url(/src/assets/column-bg2.png)">
+        <RankingList href="url(http://cloud.aiheadn.cn/fiction/assets/rank-bg0.png)"/>
+        <Boutique title="女生精选" sub-title="强力推荐，品质保证" href="url(http://cloud.aiheadn.cn/fiction/assets/column-bg2.png)">
           <div class="item"
                v-for="item in recommendData2"
           >
@@ -48,8 +48,8 @@
             </router-link>
           </div>
         </Boutique>
-        <RankingList href="url(/src/assets/rank-bg1.png)"/>
-        <Boutique title="出版精选" sub-title="强力推荐，品质保证" href="url(/src/assets/column-bg3.png)">
+        <RankingList href="url(http://cloud.aiheadn.cn/fiction/assets/rank-bg1.png)"/>
+        <Boutique title="出版精选" sub-title="强力推荐，品质保证" href="url(http://cloud.aiheadn.cn/fiction/assets/column-bg3.png)">
           <div class="item"
                v-for="item in recommendData3"
           >
@@ -67,7 +67,7 @@
             </router-link>
           </div>
         </Boutique>
-        <RankingList href="url(/src/assets/rank-bg2.png)"/>
+        <RankingList href="url(http://cloud.aiheadn.cn/fiction/assets/rank-bg2.png)"/>
 
       </el-main>
       <el-footer>
@@ -115,7 +115,7 @@ onMounted(() => {
 .bodymain{
 
   padding: 30px 159px;
-  background-image: url(/src/assets/bg.jpg);
+  background-image: url(http://cloud.aiheadn.cn/fiction/assets/bg.jpg);
   background-repeat: no-repeat;
 
 }

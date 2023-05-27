@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // 创建axios实例
 const httpInstance = axios.create({
-    baseURL: 'http://127.0.0.1:8080',
+    baseURL: 'http://8.130.46.218:8080',
     timeout: 5000
 })
 

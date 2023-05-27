@@ -131,7 +131,7 @@ const formattedText = computed(() => {
   font-weight: bold;
 }
 .chapter-text{
-  width: 900px;
+  width: 870px;
   margin-top:20px;
   line-height: 4;
   font-size: 19px;

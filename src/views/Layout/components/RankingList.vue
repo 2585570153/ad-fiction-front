@@ -12,7 +12,7 @@ defineProps({
       <h2>热门榜 ></h2>
       <div class="container">
         <div class="icon">
-          <img  src="src/assets/rank1.0f18059.png" alt="">
+          <img  src="http://cloud.aiheadn.cn/fiction/assets/rank1.0f18059.png" alt="">
         </div>
         <div class="title">
           <p>纹身觉醒:开局左龙右虎背刻修罗</p>
@@ -31,7 +31,7 @@ defineProps({
       </div>
       <div class="container">
         <div class="icon">
-          <img  src="src/assets/rank2.ed7a297.png" alt="">
+          <img  src="http://cloud.aiheadn.cn/fiction/assets/rank2.ed7a297.png" alt="">
         </div>
         <div class="title" >
           <p>联盟: 这选手醉酒比赛，全网笑疯</p>
@@ -49,7 +49,7 @@ defineProps({
         </div>
       <div class="container">
         <div class="icon">
-          <img  src="src/assets/rank3.64e0f57.png" alt="">
+          <img  src="http://cloud.aiheadn.cn/fiction/assets/rank3.64e0f57.png" alt="">
         </div>
         <div class="title">
           <p>一口天价炒饭，老唐当场拜师</p>
@@ -71,7 +71,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;4&nbsp;</div>
-         <img class="img2" src="src/assets/4.png" alt="">
+         <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>神话纪元，我进化成了恒星级巨兽</p>
@@ -90,7 +90,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;5&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>我的赶山日常，开局遇到狐狸娶亲</p>
@@ -110,7 +110,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;6&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>神话: 龙君</p>
@@ -130,7 +130,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;7&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>选手太老六，周姐呆妹气疯了</p>
@@ -150,7 +150,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;8&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>半岛检察官</p>
@@ -170,7 +170,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;9&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>盘龙，我以地系超脱</p>
@@ -190,7 +190,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption1">&nbsp;10&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>族长：我的实力是全族总和</p>
@@ -212,7 +212,7 @@ defineProps({
       <h2>收藏榜 ></h2>
       <div class="container">
         <div class="icon">
-          <img  src="src/assets/rank1.0f18059.png" alt="">
+          <img  src="http://cloud.aiheadn.cn/fiction/assets/rank1.0f18059.png" alt="">
         </div>
         <div class="title">
           <p>纹身觉醒:开局左龙右虎背刻修罗</p>
@@ -231,7 +231,7 @@ defineProps({
       </div>
       <div class="container">
         <div class="icon">
-          <img  src="src/assets/rank2.ed7a297.png" alt="">
+          <img  src="http://cloud.aiheadn.cn/fiction/assets/rank2.ed7a297.png" alt="">
         </div>
         <div class="title" >
           <p>联盟: 这选手醉酒比赛，全网笑疯</p>
@@ -249,7 +249,7 @@ defineProps({
       </div>
       <div class="container">
         <div class="icon">
-          <img  src="src/assets/rank3.64e0f57.png" alt="">
+          <img  src="http://cloud.aiheadn.cn/fiction/assets/rank3.64e0f57.png" alt="">
         </div>
         <div class="title">
           <p>一口天价炒饭，老唐当场拜师</p>
@@ -271,7 +271,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;4&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>神话纪元，我进化成了恒星级巨兽</p>
@@ -290,7 +290,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;5&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>我的赶山日常，开局遇到狐狸娶亲</p>
@@ -310,7 +310,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;6&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>神话: 龙君</p>
@@ -330,7 +330,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;7&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>选手太老六，周姐呆妹气疯了</p>
@@ -350,7 +350,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;8&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>半岛检察官</p>
@@ -370,7 +370,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;9&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>盘龙，我以地系超脱</p>
@@ -390,7 +390,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption1">&nbsp;10&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>族长：我的实力是全族总和</p>
@@ -412,7 +412,7 @@ defineProps({
       <h2>好评榜 ></h2>
       <div class="container">
         <div class="icon">
-          <img  src="src/assets/rank1.0f18059.png" alt="">
+          <img  src="http://cloud.aiheadn.cn/fiction/assets/rank1.0f18059.png" alt="">
         </div>
         <div class="title">
           <p>纹身觉醒:开局左龙右虎背刻修罗</p>
@@ -431,7 +431,7 @@ defineProps({
       </div>
       <div class="container">
         <div class="icon">
-          <img  src="src/assets/rank2.ed7a297.png" alt="">
+          <img  src="http://cloud.aiheadn.cn/fiction/assets/rank2.ed7a297.png" alt="">
         </div>
         <div class="title" >
           <p>联盟: 这选手醉酒比赛，全网笑疯</p>
@@ -449,7 +449,7 @@ defineProps({
       </div>
       <div class="container">
         <div class="icon">
-          <img  src="src/assets/rank3.64e0f57.png" alt="">
+          <img  src="http://cloud.aiheadn.cn/fiction/assets/rank3.64e0f57.png" alt="">
         </div>
         <div class="title">
           <p>一口天价炒饭，老唐当场拜师</p>
@@ -471,7 +471,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;4&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>神话纪元，我进化成了恒星级巨兽</p>
@@ -490,7 +490,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;5&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>我的赶山日常，开局遇到狐狸娶亲</p>
@@ -510,7 +510,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;6&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>神话: 龙君</p>
@@ -530,7 +530,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;7&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>选手太老六，周姐呆妹气疯了</p>
@@ -550,7 +550,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;8&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>半岛检察官</p>
@@ -570,7 +570,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption">&nbsp;9&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>盘龙，我以地系超脱</p>
@@ -590,7 +590,7 @@ defineProps({
       <div class="container">
         <div class="icon">
           <div class="caption1">&nbsp;10&nbsp;</div>
-          <img class="img2" src="src/assets/4.png" alt="">
+          <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="">
         </div>
         <div class="title">
           <p>族长：我的实力是全族总和</p>
@@ -678,7 +678,7 @@ p:hover{
 
 .bookhome{
   display: block;
-  background-image: url(/src/assets/rank-bg0.png);
+  background-image: url(http://cloud.aiheadn.cn/fiction/assets/rank-bg0.png);
   border-radius: 20px; /* 设置圆角 */
   position: relative; /* 设置父容器相对定位 */
   overflow: hidden;   /* 消除浮动 两个div合并在一块*/
@@ -687,7 +687,7 @@ p:hover{
 }
 .book{
   display: none;
-  background-image: url(/src/assets/rank-bg0.png);
+  background-image: url(http://cloud.aiheadn.cn/fiction/assets/rank-bg0.png);
   border-radius: 20px; /* 设置圆角 */
   position: relative; /* 设置父容器相对定位 */
   overflow: hidden;   /* 消除浮动 两个div合并在一块*/
@@ -727,7 +727,7 @@ p:hover{
   left: 260px;
   height:125px;
   width:100px;
-  background-image: url(src/assets/cube-book.9e71db9.png);
+  background-image: url(http://cloud.aiheadn.cn/fiction/assets/cube-book.9e71db9.png);
   background-size: contain;
 
 }

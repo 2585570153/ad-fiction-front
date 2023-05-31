@@ -33,7 +33,9 @@
           </div >
           <div class="brief">{{fictionData.brief}}...</div>
           <div class="get">
+            <router-link :to="'/read/'+fictionData.fictionId+'0001'"  class="link">
             <el-button  color="#0BAEFDFF" class="button1"  size="large" type="primary" round>开始阅读</el-button>
+            </router-link>
             <el-button  color="#E0F3FCFF" class="button2" size="large" type="danger" round>加入书架</el-button>
             <el-button   class="button3" size="large" type="danger" round>等待更新</el-button>
           </div>

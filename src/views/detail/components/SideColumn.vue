@@ -10,7 +10,7 @@
         <img  :src= item.prcture>
       </div>
         </router-link>
-        <router-link :to="'/detail/'+item.fictionId" class="link">
+        <router-link :to="'/detail/'+item.fictionId"  class="link">
       <div class="sidecolumn-content" >
         <div class="sidecolumn-title">{{ item.name }}</div>
         <div class="sidecolumn-author">{{ item.author }}</div>
@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import {onMounted, ref} from "vue";
+import {onMounted, ref,watch} from "vue";
 import {useRoute} from "vue-router";
 import{getRecommendAPI} from "/src/apis/RecommendAPI";
 const recommendData = ref([])
@@ -35,6 +35,21 @@ const getrecommend = async () =>{
   const  res = await getRecommendAPI(6,"男生")
   recommendData.value = res.data
 }
+const reloadPage = () => {
+  // 执行刷新页面的逻辑，例如重新加载数据或重新渲染组件等
+  // ...
+  location.reload(); // 刷新页面
+};
+watch(
+    () => route.params.id,
+    (newId, oldId) => {
+      // 在 id 参数变化时执行刷新页面的操作
+      console.log('id 参数变化了:', newId);
+      // 执行刷新页面的逻辑，例如重新加载数据或重新渲染组件等
+      reloadPage();
+    }
+);
+
 onMounted(() => {
   getrecommend();
 });

@@ -2,7 +2,7 @@
   <div class="common-layout-read">
     <el-container>
       <el-aside class="read-left" width="250px">
-
+      <ReadAffix />
       </el-aside>
       <el-main class="read-centre">
        <ReadContent />
@@ -17,6 +17,7 @@
 <script setup>
 
 import ReadContent from "@/views/Read/components/ReadContent.vue";
+import ReadAffix from "@/views/Read/components/ReadAffix.vue"
 </script>
 
 <style scoped>

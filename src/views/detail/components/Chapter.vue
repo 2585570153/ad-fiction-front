@@ -33,7 +33,9 @@
             <div class="title">
 
               <div class="chapter-item" v-for="item in chapterData">
+                <router-link :to="'/read/'+item.chapterId" class="link">
                 {{ item.title }}
+                </router-link>
               </div>
 
             </div>

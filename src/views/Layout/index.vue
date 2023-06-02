@@ -85,7 +85,6 @@ import News from "@/views/Layout/components/News.vue";
 import Boutique from "@/views/Layout/components/Boutique.vue";
 import RankingList from "@/views/Layout/components/RankingList.vue";
 import {onMounted, ref} from "vue";
-
 import{getRecommendAPI} from "/src/apis/RecommendAPI";
 const recommendData1 = ref([])
 const recommendData2 = ref([])
@@ -103,10 +102,16 @@ const getrecommend3 = async () =>{
   const  res = await getRecommendAPI(6,"出版")
   recommendData3.value = res.data
 }
+
+function created(){
+  window.scrollTo(0, 0);
+}
+
 onMounted(() => {
   getrecommend1();
   getrecommend2();
   getrecommend3();
+  created();
 });
 </script>
 

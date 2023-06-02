@@ -52,7 +52,6 @@ const getcontent = async () =>{
   text.value = res.data.content
   const fictionId = res.data.fictionId;
   await getfiction(fictionId); // 将fictionId作为参数传递给getfiction函数
-
 }
 const getfiction = async (fictionId) => { // 接收fictionId作为参数
   const res = await getFictionAPI(fictionId);

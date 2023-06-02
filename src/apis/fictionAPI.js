@@ -10,3 +10,10 @@ export function getFictionAPI(id){
         }
     })
 }
+export const getCategoryAPI = (params) => {
+    return request({
+        url: '/fiction/list',
+        method: 'GET',
+        params
+    });
+};

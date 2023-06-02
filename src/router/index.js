@@ -24,7 +24,7 @@ const router = createRouter({
             component:read
         },
         {
-            path: '/category',
+            path: '/category/:bigclass/:id/:classify?',
             component:Category
         },
         {

@@ -47,8 +47,10 @@ watch(
       console.log('id 参数变化了:', newId);
       // 执行刷新页面的逻辑，例如重新加载数据或重新渲染组件等
       reloadPage();
+      window.scrollTo(0, 0);
     }
 );
+
 
 onMounted(() => {
   getrecommend();

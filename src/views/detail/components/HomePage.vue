@@ -19,17 +19,8 @@
             <div class="fictiontime">&nbsp;&nbsp;更新时间:{{ fictionData.creatTime }}</div>
           </div >
           <div class="bigclass" >
-            <el-tag
-                v-for="item in items"
-                :key="item.label"
-                :type="item.type"
-                class="mx-1"
-                effect="dark"
-                size="large"
-            >
-              {{ item.label  }}
-
-            </el-tag>
+            <el-tag size="large" class="fiction-detail-tag">{{fictionData.classify}}</el-tag>
+            <el-tag size="large" class="fiction-detail-tag">{{fictionData.bigclass}}</el-tag>
           </div >
           <div class="brief">{{fictionData.brief}}...</div>
           <div class="get">
@@ -47,9 +38,7 @@
 
 
 <script lang="ts" setup >
-
 import {onMounted, ref} from 'vue'
-import type { TagProps } from 'element-plus'
 import { getFictionAPI } from '/src/apis/fictionAPI'
 import {useRoute} from "vue-router";
 const fictionData = ref({})
@@ -58,17 +47,7 @@ const getFiction = async () =>{
   const  res = await getFictionAPI(route.params.id)
   fictionData.value = res.data
 }
-
 onMounted(()=>getFiction())
-
-
-
-type Item = { type: TagProps['type']; label: string }
-const items = ref<Array<Item>>([
-  { type: '', label: '免费'},
-  { type: '', label: '小说' }
-
-])
 </script>
 
 <style scoped lang="scss">
@@ -153,5 +132,8 @@ color:$xtxColor;
   width: 120px;
   height: 40px;
 }
+.fiction-detail-tag{
+  margin-left: 10px;
 
+}
 </style>

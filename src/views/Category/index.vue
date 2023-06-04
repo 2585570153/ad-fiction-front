@@ -3,7 +3,7 @@
     <el-container>
       <el-header class="header">
         <div class="affix-container">
-          <el-affix target=".affix-container" :offset="1">
+          <el-affix target=".affix-container" :offset="0">
             <navigation navid="2"/>
           </el-affix>
         </div>

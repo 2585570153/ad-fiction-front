@@ -5,6 +5,7 @@ import Layout from '@/views/Layout/index.vue'
 import detail from '@/views/detail/index.vue';
 import read from '@/views/read/index.vue';
 import Category from '@/views/category/index.vue';
+import RankingList from '@/views/RankingList/index.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,10 @@ const router = createRouter({
         {
             path: '/category/:bigclass/:id/:classify?',
             component:Category
+        },
+        {
+            path: '/rankinglist/:bigclass/:id/:classify?',
+            component:RankingList
         },
         {
             path: '/login',

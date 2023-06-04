@@ -12,9 +12,9 @@
     <div class="flex-grow1" />
     <router-link to="/" class="link"><el-menu-item index="1" >首页</el-menu-item></router-link>
     <div class="flex-grow1" />
-    <router-link to="/category/nansheng/1" class="link">  <el-menu-item index="2">分类</el-menu-item></router-link>
+    <router-link to="/category/nansheng/1" class="link"><el-menu-item index="2">分类</el-menu-item></router-link>
     <div class="flex-grow1" />
-    <el-menu-item index="3">排行榜</el-menu-item>
+    <router-link to="/rankinglist/nansheng/1" class="link"> <el-menu-item index="3">排行榜</el-menu-item></router-link>
     <div class="flex-grow1" />
     <el-menu-item index="4">书架</el-menu-item>
     <div class="flex-grow" />

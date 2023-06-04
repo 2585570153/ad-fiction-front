@@ -3,44 +3,52 @@
     <el-container>
       <el-aside class="fiction-cateagory-my-aside" width="208px">
 
-        <el-tabs
-            v-model="activeName"
-            type="card"
-            class="demo-tabs"
-            @tab-click="handleClick"
-        >
-          <el-tab-pane label="男生" name="nansheng">
-            <div class="fiction-category-list-classify">
-              <router-link to="/category/nansheng/1" class="link"><div class="fiction-category-item-classify">全部</div></router-link>
-              <router-link to="/category/nansheng/1/dushi" class="link"><div class="fiction-category-item-classify">都市</div></router-link>
-              <router-link to="/category/nansheng/1/youxi" class="link"> <div class="fiction-category-item-classify">游戏</div></router-link>
-              <router-link to="/category/nansheng/1/xianxia" class="link"><div class="fiction-category-item-classify">仙侠</div></router-link>
-              <router-link to="/category/nansheng/1/xvanhuan" class="link"><div class="fiction-category-item-classify">玄幻</div></router-link>
-              <router-link to="/category/nansheng/1/qingxiaoshuo" class="link"><div class="fiction-category-item-classify">轻小说</div></router-link>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="女生" name="nvsheng">
-            <div class="fiction-category-list-classify">
-              <router-link to="/category/nvsheng/1/xyzt" class="link"><div class="fiction-category-item-classify">悬疑侦探</div></router-link>
-              <router-link to="/category/nvsheng/1/xdyq" class="link"> <div class="fiction-category-item-classify">现代言情</div></router-link>
-              <router-link to="/category/nvsheng/1/gdyq" class="link"><div class="fiction-category-item-classify">古代言情</div></router-link>
-              <router-link to="/category/nvsheng/1/trys" class="link"><div class="fiction-category-item-classify">同人衍生</div></router-link>
-              <router-link to="/category/nvsheng/1/khkj" class="link"><div class="fiction-category-item-classify">科幻空间</div></router-link>
-              <router-link to="/category/nvsheng/1/xxqy" class="link"><div class="fiction-category-item-classify">仙侠奇缘</div></router-link>
-              <router-link to="/category/nvsheng/1" class="link"><div class="fiction-category-item-classify">全部</div></router-link>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="出版" name="chuban">
-            <div class="fiction-category-list-classify">
-              <router-link to="/category/chuban/1" class="link"><div class="fiction-category-item-classify">全部</div></router-link>
-              <router-link to="/category/chuban/1/cglz" class="link"><div class="fiction-category-item-classify">成功励志</div></router-link>
-              <router-link to="/category/chuban/1/xiaoshuo" class="link"> <div class="fiction-category-item-classify">小说</div></router-link>
-              <router-link to="/category/chuban/1/falv" class="link"><div class="fiction-category-item-classify">法律</div></router-link>
-              <router-link to="/category/chuban/1/wenxve" class="link"><div class="fiction-category-item-classify">文学</div></router-link>
-              <router-link to="/category/chuban/1/qzjj" class="link"><div class="fiction-category-item-classify">亲子家教</div></router-link>
-            </div>
-          </el-tab-pane>
-        </el-tabs>
+        <el-menu
+        default-active="2"
+        class="fiction-rankinglist-el-menu"
+        @open="handleOpen"
+        @close="handleClose"
+      >
+      <h3 class="fiction-rankinglist-h2">男生排行榜</h3>
+        <el-menu-item index="1">
+          <el-icon><icon-menu /></el-icon>
+          <span>收藏榜</span>
+        </el-menu-item>
+        <el-menu-item index="2" >
+          <el-icon><document /></el-icon>
+          <span>点击榜</span>
+        </el-menu-item>
+        <el-menu-item index="3">
+          <el-icon><setting /></el-icon>
+          <span>推荐榜</span>
+        </el-menu-item>
+              <h3 class="fiction-rankinglist-h2">女生排行榜</h3>
+        <el-menu-item index="4">
+          <el-icon><icon-menu /></el-icon>
+          <span>收藏榜</span>
+        </el-menu-item>
+        <el-menu-item index="5" >
+          <el-icon><document /></el-icon>
+          <span>点击榜</span>
+        </el-menu-item>
+        <el-menu-item index="6">
+          <el-icon><setting /></el-icon>
+          <span>推荐榜</span>
+        </el-menu-item>
+              <h3 class="fiction-rankinglist-h2">出版排行榜</h3>
+        <el-menu-item index="7">
+          <el-icon><icon-menu /></el-icon>
+          <span>收藏榜</span>
+        </el-menu-item>
+        <el-menu-item index="8" >
+          <el-icon><document /></el-icon>
+          <span>点击榜</span>
+        </el-menu-item>
+        <el-menu-item index="9">
+          <el-icon><setting /></el-icon>
+          <span>推荐榜</span>
+        </el-menu-item>
+      </el-menu>
       </el-aside>
 
       <el-main class="fiction-cateagory-my-main" >
@@ -221,6 +229,11 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
   padding-left: 25px;
   padding-right: 25px;
   padding-bottom: 25px;
-
+}
+.fiction-rankinglist-el-menu{
+  padding-left: 50px;
+}
+.fiction-rankinglist-h2{
+  padding-left: 30px;
 }
 </style>

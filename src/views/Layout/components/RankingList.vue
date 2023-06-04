@@ -9,7 +9,7 @@ defineProps({
 <template>
   <div class="rankinglist">
     <div class="item">
-      <h2>热门榜 ></h2>
+      <h2>收藏榜 ></h2>
       <div class="container">
         <div class="icon">
           <img  src="http://cloud.aiheadn.cn/fiction/assets/rank1.0f18059.png" alt="">
@@ -209,7 +209,7 @@ defineProps({
       </div>
     </div>
     <div class="item">
-      <h2>收藏榜 ></h2>
+      <h2>点击榜 ></h2>
       <div class="container">
         <div class="icon">
           <img  src="http://cloud.aiheadn.cn/fiction/assets/rank1.0f18059.png" alt="">
@@ -409,7 +409,7 @@ defineProps({
       </div>
     </div>
     <div class="item">
-      <h2>好评榜 ></h2>
+      <h2>推荐榜 ></h2>
       <div class="container">
         <div class="icon">
           <img  src="http://cloud.aiheadn.cn/fiction/assets/rank1.0f18059.png" alt="">

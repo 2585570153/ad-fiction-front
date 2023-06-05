@@ -6,6 +6,7 @@ import detail from '@/views/detail/index.vue';
 import read from '@/views/read/index.vue';
 import Category from '@/views/category/index.vue';
 import RankingList from '@/views/RankingList/index.vue';
+import mobile from '@/mobile/index.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,8 +36,20 @@ const router = createRouter({
         {
             path: '/login',
             component: Login
+        },
+        {
+            path: '/mobile',
+            component: mobile
         }
     ]
 })
 
+router.beforeEach((to, from, next) => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isMobile = userAgent.includes('mobile');
+    // 设置设备类型到路由的元信息中
+    to.meta.isMobile = isMobile;
+  
+    next();
+  });
 export default router

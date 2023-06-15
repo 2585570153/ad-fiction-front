@@ -14,7 +14,12 @@
 
       <Catalogue />
       </el-main>
-      <el-footer>Footer</el-footer>
+        <br>
+        <br>
+        <br>
+        <el-footer class="fiction-footer">
+            <fictionfooter />
+        </el-footer>
     </el-container>
   </div>
 </template>
@@ -23,6 +28,7 @@
 import Navigation from "@/views/Layout/components/Navigation.vue";
 import Catalogue from "@/views/Category/components/Catalogue.vue";
 import {onMounted} from "vue";
+import Fictionfooter from "@/components/fictionfooter.vue";
 function created(){
   window.scrollTo(0, 0);
 }
@@ -51,5 +57,8 @@ onMounted(() => {
   left: 50px;
   padding-left: 160px;
 }
-
+.fiction-footer{
+    height: 250px;
+    padding: 0;
+}
 </style>

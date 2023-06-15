@@ -40,6 +40,7 @@
 <script lang="ts" setup >
 import {onMounted, ref} from 'vue'
 import { getFictionAPI } from '/src/apis/fictionAPI'
+import { getclick } from '/src/apis/rankinglistAPI'
 import {useRoute} from "vue-router";
 const fictionData = ref({})
 const route = useRoute()
@@ -47,7 +48,14 @@ const getFiction = async () =>{
   const  res = await getFictionAPI(route.params.id)
   fictionData.value = res.data
 }
-onMounted(()=>getFiction())
+const getCkick = async () =>{
+    await getclick(route.params.id)
+}
+onMounted(()=>{
+    getFiction()
+    getCkick()
+
+})
 </script>
 
 <style scoped lang="scss">

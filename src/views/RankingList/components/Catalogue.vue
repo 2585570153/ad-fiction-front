@@ -4,49 +4,57 @@
       <el-aside class="fiction-cateagory-my-aside" width="208px">
 
         <el-menu
-        default-active="2"
         class="fiction-rankinglist-el-menu"
         @open="handleOpen"
         @close="handleClose"
       >
       <h3 class="fiction-rankinglist-h2">男生排行榜</h3>
         <el-menu-item index="1">
-          <el-icon><icon-menu /></el-icon>
+            <router-link to="/rankinglist/nansheng/1/collect" class="link">
           <span>收藏榜</span>
+            </router-link>
         </el-menu-item>
         <el-menu-item index="2" >
-          <el-icon><document /></el-icon>
+            <router-link to="/rankinglist/nansheng/1/click" class="link">
           <span>点击榜</span>
+            </router-link>
         </el-menu-item>
         <el-menu-item index="3">
-          <el-icon><setting /></el-icon>
+            <router-link to="/rankinglist/nansheng/1/recommend" class="link">
           <span>推荐榜</span>
+            </router-link>
         </el-menu-item>
               <h3 class="fiction-rankinglist-h2">女生排行榜</h3>
         <el-menu-item index="4">
-          <el-icon><icon-menu /></el-icon>
+            <router-link to="/rankinglist/nvsheng/1/collect" class="link">
           <span>收藏榜</span>
+            </router-link>
         </el-menu-item>
         <el-menu-item index="5" >
-          <el-icon><document /></el-icon>
+            <router-link to="/rankinglist/nvsheng/1/click" class="link">
           <span>点击榜</span>
+            </router-link>
         </el-menu-item>
         <el-menu-item index="6">
-          <el-icon><setting /></el-icon>
+            <router-link to="/rankinglist/nvsheng/1/recommend" class="link">
           <span>推荐榜</span>
+            </router-link>
         </el-menu-item>
               <h3 class="fiction-rankinglist-h2">出版排行榜</h3>
         <el-menu-item index="7">
-          <el-icon><icon-menu /></el-icon>
+            <router-link to="/rankinglist/chuban/1/collect" class="link">
           <span>收藏榜</span>
+            </router-link>
         </el-menu-item>
         <el-menu-item index="8" >
-          <el-icon><document /></el-icon>
+            <router-link to="/rankinglist/chuban/1/click" class="link">
           <span>点击榜</span>
+            </router-link>
         </el-menu-item>
         <el-menu-item index="9">
-          <el-icon><setting /></el-icon>
+            <router-link to="/rankinglist/chuban/1/recommend" class="link">
           <span>推荐榜</span>
+            </router-link>
         </el-menu-item>
       </el-menu>
       </el-aside>
@@ -84,6 +92,7 @@
         <el-pagination
             class="fiction-cateagory-pagination"
             background layout="prev, pager, next"
+            :current-page="newcurrentPage"
             :total="fictiontotal"
             @current-change="handlePageChange"
         />
@@ -95,25 +104,44 @@
 <script lang="ts" setup>
 import { onMounted,ref,watch} from 'vue'
 import type { TabsPaneContext } from 'element-plus'
-import { getCategoryAPI } from '/src/apis/fictionAPI'
-import {useRoute} from "vue-router";
+import { getfictioncollectAPI,getfictionclickAPI } from '/src/apis/rankinglistAPI'
+import{ getRecommendpageAPI } from "/src/apis/RecommendAPI";
+import {useRoute, useRouter} from "vue-router";
 const route = useRoute()
+const router = useRouter()
 const data = ref({
   page:route.params.id,
   size:10,
   bigclass:route.params.bigclass,
-  classify:route.params.classify
 })
 const fictionList = ref([])
 const fictiontotal = ref('')
-const getFiction = async () =>{
-  const  res = await getCategoryAPI(data.value)
-  fictionList.value = res.data
-  fictiontotal.value = res.total
+const rankinglist = ref(null);
+const newcurrentPage = ref(parseInt(route.params.id));
+const getfictioncollect = async () =>{
+    const  res = await getfictioncollectAPI(data.value)
+    fictionList.value = res.data
+    fictiontotal.value = res.total
 }
+const getfictionclick = async () =>{
+    const  res = await getfictionclickAPI(data.value)
+    fictionList.value = res.data
+    fictiontotal.value = res.total
+}
+const getRecommendpage = async () =>{
+    const  res = await getRecommendpageAPI(data.value)
+    fictionList.value = res.data
+    fictiontotal.value = res.total
+}
+
 const handlePageChange = (currentPage) => {
   console.log("当前页码:", currentPage);
   // 在这里更新数据或执行其他操作
+    const newRoute = {
+        path: `/rankinglist/${route.params.bigclass}/${currentPage}/${route.params.rankinglist}`, // 新的路由路径，将 currentPage 作为路径的一部分
+    };
+    router.push(newRoute);
+
 };
 const reloadPage = () => {
   // 执行刷新页面的逻辑，例如重新加载数据或重新渲染组件等
@@ -124,7 +152,7 @@ const reloadPage = () => {
 watch(
     () => ({
       bigclass: route.params.bigclass,
-      classify: route.params.classify,
+      rankinglist: route.params.rankinglist,
       id: route.params.id,
     }),
     (newParams, oldParams) => {
@@ -135,7 +163,14 @@ watch(
     }
 );
 onMounted(() => {
-  getFiction()
+    rankinglist.value = route.params.rankinglist;
+    if(rankinglist.value === 'collect'){
+        getfictioncollect();
+    }else if(rankinglist.value === 'click'){
+        getfictionclick();
+    }else if (rankinglist.value === 'recommend'){
+        getRecommendpage();
+    }
 });
 
 
@@ -198,7 +233,7 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 .fiction-cateagory-brief{
   padding-top: 12px;
   font-size: 15px;
-  width: 800px;
+  max-width: 800px;
   height: 60px;
   color: #595858;
   overflow: hidden; /* 超出部分隐藏 */
@@ -231,9 +266,9 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
   padding-bottom: 25px;
 }
 .fiction-rankinglist-el-menu{
-  padding-left: 50px;
+  padding-left: 75px;
 }
 .fiction-rankinglist-h2{
-  padding-left: 30px;
+
 }
 </style>

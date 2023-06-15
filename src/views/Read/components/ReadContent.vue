@@ -39,24 +39,44 @@
 <script setup>
 import{getcontentAPI} from "/src/apis/contentAPI";
 import{getFictionAPI} from "@/apis/fictionAPI";
+import { storeToRefs } from 'pinia'
+import {useReadStore} from "@/stores/readstores"
+import {useRoute, useRouter} from "vue-router";
+import {ref, computed, onMounted, watch, onBeforeMount} from "vue";
+import axios from "axios";
 
-import {useRoute} from "vue-router";
-import {ref, computed, onMounted, watch} from "vue";
+const ReadStore = useReadStore();
+let { readid } = storeToRefs(ReadStore);
 const route = useRoute()
 const contentData = ref({})
 const fictionData = ref({})
+const router = useRouter()
+
 
 const getcontent = async () =>{
   const  res = await getcontentAPI(route.params.id)
-  contentData.value = res.data
-  text.value = res.data.content
+    contentData.value = res.data
+    const url = res.data.content;
+    const txtResponse = await axios.get("http://cloud.aiheadn.cn/txt"+url, { responseType: "arraybuffer" });
+
+// 将返回的数据视为 ArrayBuffer，然后进行解码
+    const decoder = new TextDecoder("GBK");
+    const decodedText = decoder.decode(new Uint8Array(txtResponse.data));
+
+  text.value = decodedText;
   const fictionId = res.data.fictionId;
+    // 存储pinia
+    readid.value = fictionId
   await getfiction(fictionId); // 将fictionId作为参数传递给getfiction函数
 }
+
 const getfiction = async (fictionId) => { // 接收fictionId作为参数
   const res = await getFictionAPI(fictionId);
   fictionData.value = res.data;
 }
+
+
+
 const tempsub = computed(()=>{
   return  Number(route.params.id)-1
 })
@@ -65,13 +85,33 @@ const tempadd = computed(()=>{
 })
 const text = ref('');
 const formattedText = computed(() => {
-  return text.value.replace(/\r\n\r\n/g, "<p class='read-fiction-p'>");
+  return text.value.replace(/\n/g, "<p class='read-fiction-p'>");
 });
 const reloadPage = () => {
   // 执行刷新页面的逻辑，例如重新加载数据或重新渲染组件等
   // ...
   location.reload(); // 刷新页面
 };
+const handleKeydown = (event) => {
+    // handle your keydown event here
+    if (event.key=='ArrowLeft') {
+        const newRoute = {
+            path: `/read/${route.params.id-1}`// 新的路由路径，将 currentPage 作为路径的一部分
+        };
+        router.push(newRoute);
+
+    } else if (event.key=='ArrowRight') {
+        const id = Number(route.params.id);
+        const newRoute = {
+            path: `/read/${id+1}`// 新的路由路径，将 currentPage 作为路径的一部分
+        };
+        router.push(newRoute);
+    }
+};
+
+
+
+
 watch(
     () => route.params.id,
     (newId, oldId) => {
@@ -83,13 +123,16 @@ watch(
 );
 onMounted(() => {
   getcontent();
-
+    window.addEventListener('keydown', handleKeydown.bind(this));
 });
+onBeforeMount(() => {
+    window.removeEventListener('keydown', handleKeydown);
+})
 </script>
 
 <style scoped>
 .read-content{
-  background-color: #EDEAE1FF;
+  background-color: #ebe8e0;
   display: flex;
   flex-direction: column;
   justify-content: center;

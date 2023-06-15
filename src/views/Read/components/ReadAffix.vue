@@ -1,34 +1,51 @@
-<template>
-  <div class="fiction-read-affix">
-  <el-affix :offset="100">
-    <div class="fiction-read-left">
-      <router-link to="/" class="link">
-        <svg-icon  iconName="icon-shouye" className="fiction-read-affix-ico"></svg-icon>
-      <div class="fiction-read-affix-font">
-        首页
-      </div>
-      </router-link>
-    </div>
-  </el-affix>
-    <el-affix :offset="180">
-      <div class="fiction-read-left">
 
-        <router-link to="/" class="link">
-          <svg-icon  iconName="icon-xiangxi" className="fiction-read-affix-ico"></svg-icon>
-          <div class="fiction-read-affix-font">
-            详细
-          </div>
-        </router-link>
-
-      </div>
-    </el-affix>
-  </div>
-</template>
 
 <script setup>
+import {useReadStore} from "@/stores/readstores"
+import {storeToRefs} from "pinia";
+const ReadStore = useReadStore();
+let { readid } = storeToRefs(ReadStore);
 
 </script>
+<template>
 
+        <el-affix :offset="100">
+            <div class="fiction-read-left">
+                <router-link to="/" class="link">
+                    <svg-icon  iconName="icon-shouye" className="fiction-read-affix-ico"></svg-icon>
+                    <div class="fiction-read-affix-font">
+                        首页
+                    </div>
+                </router-link>
+            </div>
+        </el-affix>
+        <el-affix :offset="180">
+            <div class="fiction-read-left">
+
+                <router-link :to="'/detail/'+readid" class="link">
+                    <svg-icon  iconName="icon-xiangxi" className="fiction-read-affix-ico"></svg-icon>
+                    <div class="fiction-read-affix-font">
+                        详细
+                    </div>
+                </router-link>
+
+            </div>
+        </el-affix>
+        <el-affix :offset="260">
+            <div class="fiction-read-left">
+
+                <router-link to="#" class="link">
+                    <svg-icon  iconName="icon-mulu" className="fiction-read-affix-ico"></svg-icon>
+                    <div class="fiction-read-affix-font">
+                        目录
+                    </div>
+                </router-link>
+
+            </div>
+        </el-affix>
+
+
+</template>
 <style scoped lang="scss">
 
 .fiction-read-left{

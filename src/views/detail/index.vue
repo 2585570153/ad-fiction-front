@@ -15,7 +15,9 @@
         <br><br>
         <Chapter />
       </el-main>
-      <el-footer>Footer</el-footer>
+        <el-footer class="fiction-footer">
+            <fictionfooter />
+        </el-footer>
     </el-container>
   </div>
 
@@ -28,6 +30,7 @@ import Navigation from "@/views/Layout/components/Navigation.vue";
 import HomePage from "@/views/detail/components/HomePage.vue";
 import Chapter from "@/views/detail/components/Chapter.vue";
 import {onMounted} from "vue";
+import Fictionfooter from "@/components/fictionfooter.vue";
 function created(){
   window.scrollTo(0, 0);
 }
@@ -40,7 +43,7 @@ onMounted(() => {
 .affix-container {
   text-align: center;
   /*设置导航固定的隐藏宽度*/
-  height: 4000px;
+  height: 1000px;
 
   border-radius: 1px;
 }
@@ -53,5 +56,8 @@ onMounted(() => {
 .header{
   padding: 0;
 }
-
+.fiction-footer{
+    height: 250px;
+    padding: 0;
+}
 </style>

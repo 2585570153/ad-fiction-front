@@ -9,35 +9,46 @@
             class="demo-tabs"
             @tab-click="handleClick"
         >
-          <el-tab-pane label="男生" name="nansheng">
+          <el-tab-pane  name="nansheng">
+              <template v-slot:label>
+                  <router-link to="/category/nansheng/1" class="link">男生</router-link>
+              </template>
             <div class="fiction-category-list-classify">
-              <router-link to="/category/nansheng/1" class="link"><div class="fiction-category-item-classify">全部</div></router-link>
+              <router-link to="/category/nansheng/1/junshi" class="link"><div class="fiction-category-item-classify">军事</div></router-link>
               <router-link to="/category/nansheng/1/dushi" class="link"><div class="fiction-category-item-classify">都市</div></router-link>
               <router-link to="/category/nansheng/1/youxi" class="link"> <div class="fiction-category-item-classify">游戏</div></router-link>
               <router-link to="/category/nansheng/1/xianxia" class="link"><div class="fiction-category-item-classify">仙侠</div></router-link>
               <router-link to="/category/nansheng/1/xvanhuan" class="link"><div class="fiction-category-item-classify">玄幻</div></router-link>
-              <router-link to="/category/nansheng/1/qingxiaoshuo" class="link"><div class="fiction-category-item-classify">轻小说</div></router-link>
+              <router-link to="/category/nansheng/1/lishi" class="link"><div class="fiction-category-item-classify">历史</div></router-link>
+              <router-link to="/category/nansheng/1/wuxia" class="link"><div class="fiction-category-item-classify">武侠</div></router-link>
+              <router-link to="/category/nansheng/1/kehuan" class="link"><div class="fiction-category-item-classify">科幻</div></router-link>
+              <router-link to="/category/nansheng/1/xvanyi" class="link"><div class="fiction-category-item-classify">悬疑</div></router-link>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="女生" name="nvsheng">
+            <el-tab-pane  name="nvsheng">
+                <template v-slot:label>
+                    <router-link to="/category/nvsheng/1" class="link">女生</router-link>
+                </template>
             <div class="fiction-category-list-classify">
               <router-link to="/category/nvsheng/1/xyzt" class="link"><div class="fiction-category-item-classify">悬疑侦探</div></router-link>
               <router-link to="/category/nvsheng/1/xdyq" class="link"> <div class="fiction-category-item-classify">现代言情</div></router-link>
               <router-link to="/category/nvsheng/1/gdyq" class="link"><div class="fiction-category-item-classify">古代言情</div></router-link>
-              <router-link to="/category/nvsheng/1/trys" class="link"><div class="fiction-category-item-classify">同人衍生</div></router-link>
+              <router-link to="/category/nvsheng/1/yxjj" class="link"><div class="fiction-category-item-classify">游戏竞技</div></router-link>
               <router-link to="/category/nvsheng/1/khkj" class="link"><div class="fiction-category-item-classify">科幻空间</div></router-link>
               <router-link to="/category/nvsheng/1/xxqy" class="link"><div class="fiction-category-item-classify">仙侠奇缘</div></router-link>
-              <router-link to="/category/nvsheng/1" class="link"><div class="fiction-category-item-classify">全部</div></router-link>
             </div>
+
           </el-tab-pane>
-          <el-tab-pane label="出版" name="chuban">
+          <el-tab-pane  name="chuban">
+              <template v-slot:label>
+                  <router-link to="/category/chuban/1" class="link">出版</router-link>
+              </template>
             <div class="fiction-category-list-classify">
-              <router-link to="/category/chuban/1" class="link"><div class="fiction-category-item-classify">全部</div></router-link>
-              <router-link to="/category/chuban/1/cglz" class="link"><div class="fiction-category-item-classify">成功励志</div></router-link>
+              <router-link to="/category/chuban/1/qingchun" class="link"><div class="fiction-category-item-classify">青春</div></router-link>
               <router-link to="/category/chuban/1/xiaoshuo" class="link"> <div class="fiction-category-item-classify">小说</div></router-link>
               <router-link to="/category/chuban/1/falv" class="link"><div class="fiction-category-item-classify">法律</div></router-link>
               <router-link to="/category/chuban/1/wenxve" class="link"><div class="fiction-category-item-classify">文学</div></router-link>
-              <router-link to="/category/chuban/1/qzjj" class="link"><div class="fiction-category-item-classify">亲子家教</div></router-link>
+              <router-link to="/category/chuban/1/chuanji" class="link"><div class="fiction-category-item-classify">传记</div></router-link>
             </div>
           </el-tab-pane>
         </el-tabs>
@@ -77,6 +88,7 @@
             class="fiction-cateagory-pagination"
             background layout="prev, pager, next"
             :total="fictiontotal"
+            :current-page="newcurrentPage"
             @current-change="handlePageChange"
         />
       </el-main>
@@ -88,8 +100,9 @@
 import { onMounted,ref,watch} from 'vue'
 import type { TabsPaneContext } from 'element-plus'
 import { getCategoryAPI } from '/src/apis/fictionAPI'
-import {useRoute} from "vue-router";
+import {useRoute,useRouter} from "vue-router";
 const route = useRoute()
+const router = useRouter()
 const data = ref({
   page:route.params.id,
   size:10,
@@ -98,6 +111,7 @@ const data = ref({
 })
 const fictionList = ref([])
 const fictiontotal = ref('')
+const newcurrentPage = ref(parseInt(route.params.id)); // 使用 ref 创建响应式的 currentPage 变量
 const getFiction = async () =>{
   const  res = await getCategoryAPI(data.value)
   fictionList.value = res.data
@@ -105,8 +119,16 @@ const getFiction = async () =>{
 }
 const handlePageChange = (currentPage) => {
   console.log("当前页码:", currentPage);
+
   // 在这里更新数据或执行其他操作
+    const newRoute = {
+        path: `/category/${route.params.bigclass}/${currentPage}/${route.params.classify}`, // 新的路由路径，将 currentPage 作为路径的一部分
+    };
+    router.push(newRoute);
+
 };
+
+
 const reloadPage = () => {
   // 执行刷新页面的逻辑，例如重新加载数据或重新渲染组件等
   // ...
@@ -122,12 +144,13 @@ watch(
     (newParams, oldParams) => {
       console.log('参数变化了:', newParams);
       // 执行其他操作...
-      reloadPage();
+        reloadPage();
       window.scrollTo(0, 0);//加入后可以回到原始位置
     }
 );
 onMounted(() => {
   getFiction()
+
 });
 
 
@@ -190,7 +213,7 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 .fiction-cateagory-brief{
   padding-top: 12px;
   font-size: 15px;
-  width: 800px;
+  max-width: 800px;
   height: 60px;
   color: #595858;
   overflow: hidden; /* 超出部分隐藏 */

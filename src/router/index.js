@@ -7,6 +7,7 @@ import read from '@/views/read/index.vue';
 import Category from '@/views/category/index.vue';
 import RankingList from '@/views/RankingList/index.vue';
 import mobile from '@/mobile/index.vue';
+import search from '@/views/search/index.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,12 +31,16 @@ const router = createRouter({
             component:Category
         },
         {
-            path: '/rankinglist/:bigclass/:id/:classify?',
+            path: '/rankinglist/:bigclass/:id/:rankinglist',
             component:RankingList
         },
         {
             path: '/login',
             component: Login
+        },
+        {
+            path: '/search/:name/:id',
+            component: search
         },
         {
             path: '/mobile',

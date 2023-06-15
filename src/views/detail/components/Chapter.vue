@@ -19,7 +19,7 @@
               <div class="chapter-title1">{{ contentData.title }}</div>
               <div class="chapter-text" >
 
-                {{formattedText}}
+                  <div v-html="formattedText"></div>
 
               </div>
             </div>
@@ -60,6 +60,7 @@ import SideColumn from "/src/views/detail/components/SideColumn.vue";
 import{getchapterAPI} from "/src/apis/chapterAPI";
 import{getcontentAPI} from "/src/apis/contentAPI";
 import {useRoute} from "vue-router";
+import axios from "axios";
 const chapterData = ref([])
 const contentData = ref({})
 const route = useRoute()
@@ -70,7 +71,15 @@ const getchapter = async () =>{
 const getcontent = async () =>{
   const  res = await getcontentAPI(route.params.id+"0001")
   contentData.value = res.data
-  originalText.value = res.data.content
+    const url = res.data.content;
+    const txtResponse = await axios.get("http://cloud.aiheadn.cn/txt"+url, { responseType: "arraybuffer" });
+
+// 将返回的数据视为 ArrayBuffer，然后进行解码
+    const decoder = new TextDecoder("GBK");
+    const decodedText = decoder.decode(new Uint8Array(txtResponse.data));
+     originalText.value = decodedText
+
+
 }
 
 onMounted(() => {
@@ -79,12 +88,11 @@ onMounted(() => {
 });
 
 const activeName = ref('first')
-
 const originalText = ref('');
 const formattedText = computed(() => {
   // 在计算属性的函数体内进行计算
   // 这里假设你想要将空格替换为&nbsp;
-  return originalText.value.replace(/\r\n\r\n/g, "\n");
+  return originalText.value.replace(/\n/g, "<p>");
   // /\r\n\r\n/g 这个是一会用的
   //  /\\r\\n\\r\\n/g
 });
@@ -135,8 +143,8 @@ const formattedText = computed(() => {
 .chapter-text{
   width: 870px;
   margin-top:20px;
-  line-height: 4;
+  line-height: 3;
   font-size: 19px;
-  white-space: pre-wrap; /* 允许换行 */
+  //white-space: pre-wrap; /* 允许换行 */
 }
 </style>

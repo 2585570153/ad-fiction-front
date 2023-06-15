@@ -11,12 +11,13 @@
       <el-main class="bodymain">
         <Banner />
         <News/>
+
         <Boutique title="男生精选" sub-title="强力推荐，品质保证" href="url(http://cloud.aiheadn.cn/fiction/assets/column-bg1.png)">
             <div class="item"
                  v-for="item in recommendData1"
             >
               <router-link :to="'/detail/'+item.fictionId" class="link">
-              <div class="imges">
+              <div class="home-imges">
                 <div class="caption">&nbsp;免费&nbsp;</div>
                 <img  :src=item.prcture>
               </div>
@@ -29,13 +30,15 @@
               </router-link>
             </div>
         </Boutique>
-        <RankingList href="url(http://cloud.aiheadn.cn/fiction/assets/rank-bg0.png)"/>
-        <Boutique title="女生精选" sub-title="强力推荐，品质保证" href="url(http://cloud.aiheadn.cn/fiction/assets/column-bg2.png)">
+        <RankingList href="url(http://cloud.aiheadn.cn/fiction/assets/rank-bg0.png)" bclass="nansheng"/>
+          <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+          <Boutique title="女生精选" sub-title="强力推荐，品质保证" href="url(http://cloud.aiheadn.cn/fiction/assets/column-bg2.png)">
           <div class="item"
                v-for="item in recommendData2"
           >
             <router-link :to="'/detail/'+item.fictionId" class="link">
-            <div class="imges">
+            <div class="home-imges">
               <div class="caption">&nbsp;免费&nbsp;</div>
               <img  :src=item.prcture>
             </div>
@@ -48,13 +51,15 @@
             </router-link>
           </div>
         </Boutique>
-        <RankingList href="url(http://cloud.aiheadn.cn/fiction/assets/rank-bg1.png)"/>
-        <Boutique title="出版精选" sub-title="强力推荐，品质保证" href="url(http://cloud.aiheadn.cn/fiction/assets/column-bg3.png)">
+        <RankingList href="url(http://cloud.aiheadn.cn/fiction/assets/rank-bg1.png)" bclass="nvsheng"/>
+         <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+          <Boutique title="出版精选" sub-title="强力推荐，品质保证" href="url(http://cloud.aiheadn.cn/fiction/assets/column-bg3.png)">
           <div class="item"
                v-for="item in recommendData3"
           >
             <router-link :to="'/detail/'+item.fictionId" class="link">
-            <div class="imges">
+            <div class="home-imges">
               <div class="caption">&nbsp;免费&nbsp;</div>
               <img  :src=item.prcture>
             </div>
@@ -67,12 +72,12 @@
             </router-link>
           </div>
         </Boutique>
-        <RankingList href="url(http://cloud.aiheadn.cn/fiction/assets/rank-bg2.png)"/>
+        <RankingList href="url(http://cloud.aiheadn.cn/fiction/assets/rank-bg2.png)" bclass="chuban"/>
+          <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
       </el-main>
-      <el-footer>
-        <el-backtop :right="100" :bottom="100" />
-        Footer
+      <el-footer class="fiction-footer">
+        <fictionfooter />
       </el-footer>
     </el-container>
   </div>
@@ -86,6 +91,7 @@ import Boutique from "@/views/Layout/components/Boutique.vue";
 import RankingList from "@/views/Layout/components/RankingList.vue";
 import {onMounted, ref} from "vue";
 import{getRecommendAPI} from "/src/apis/RecommendAPI";
+import Fictionfooter from "@/components/fictionfooter.vue";
 const recommendData1 = ref([])
 const recommendData2 = ref([])
 const recommendData3 = ref([])
@@ -147,7 +153,7 @@ onMounted(() => {
   margin: auto; /* 将左右外边距都设置为自动，从而使该元素在其父容器中水平居中 */
   padding-top: 30px;/* 增加上边距 */
 }
-.imges{
+.home-imges{
   /* */
   border-radius: 5%; /*圆角 */
   width: 140px;
@@ -155,10 +161,15 @@ onMounted(() => {
   overflow: hidden;  /* 固定图片的大小*/
   position: relative;/*定位 */
 }
+.home-imges img {
+  width: 100%; /* 图片宽度填满容器 */
+  height: 100%; /* 图片高度填满容器 */
+  object-fit: cover; /* 缩放和剪裁图片以填充容器 */
+}
 img{
   transition: transform 0.4s;  /*圆滑的变回去 */
 }
-.imges:hover img{
+.home-imges:hover img{
   transform: scale(1.1);/*放大 */
 }
 .caption {
@@ -202,5 +213,9 @@ img{
   color: #fda718;
   font-size: 10px;
   float: right;  /*右对齐 */
+}
+.fiction-footer{
+  height: 250px;
+  padding: 0;
 }
 </style>

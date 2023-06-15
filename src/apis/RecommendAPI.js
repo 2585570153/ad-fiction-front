@@ -11,3 +11,10 @@ export function getRecommendAPI(id,bigclass){
         }
     })
 }
+export const getRecommendpageAPI = (params) => {
+    return request({
+        url: '/recommend/data',
+        method: 'GET',
+        params
+    });
+};

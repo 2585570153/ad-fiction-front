@@ -8,7 +8,7 @@ import Category from '@/views/category/index.vue';
 import RankingList from '@/views/RankingList/index.vue';
 import mobile from '@/mobile/index.vue';
 import search from '@/views/search/index.vue';
-
+import bookrank from '@/views/BookRack/index.vue';
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     // path和component对应关系的位置
@@ -37,6 +37,10 @@ const router = createRouter({
         {
             path: '/login',
             component: Login
+        },
+        {
+            path: '/bookrank',
+            component: bookrank
         },
         {
             path: '/search/:name/:id',

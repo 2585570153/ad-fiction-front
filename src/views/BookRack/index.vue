@@ -1,20 +1,16 @@
 <template>
-    <div class="common-layout-search">
+    <div class="common-layout-bookrack">
         <el-container>
             <el-header class="header">
                 <div class="affix-container">
                     <el-affix target=".affix-container" :offset="0">
-                        <navigation navid="0"/>
+                        <navigation navid="4"/>
                     </el-affix>
                 </div>
             </el-header>
-            <p class="fiction-rankinglist-p">首页 > 书名</p>
-            <el-main class="search-centre">
-                <br>
-            <search />
-                <br>
-                <br>
-            <Catalogue />
+            <p class="fiction-rankinglist-p">首页 > 书架</p>
+            <el-main class="bookrack-centre">
+            <Book />
 
             </el-main>
             <el-footer class="fiction-footer">
@@ -26,10 +22,9 @@
 
 <script setup>
 
-import Navigation from "@/views/Layout/components/Navigation.vue";
-import Catalogue from "@/views/Search/components/Catalogue.vue";
-import Search from "@/views/Search/components/search.vue";
 import Fictionfooter from "@/components/fictionfooter.vue";
+import Navigation from "@/views/Layout/components/Navigation.vue";
+import Book from "@/views/BookRack/components/book.vue"
 </script>
 
 <style scoped>
@@ -46,7 +41,7 @@ import Fictionfooter from "@/components/fictionfooter.vue";
     left: 50px;
     padding-left: 160px;
 }
-.search-centre{
+.bookrack-centre{
     padding-left: 250px;
     padding-right: 250px;
 }

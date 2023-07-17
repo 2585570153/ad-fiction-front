@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia} from "pinia";
-
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import router from "./router";
 import SvgIcon from './components/SvgIcon/SvgIcon.vue'
 import './assets/iconfont/iconfont.js';
@@ -14,6 +14,7 @@ import '@/styles/common.scss'
 //     console.log(res);
 // })
 const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 const app = createApp(App)
 app.use(router)
 app.use(pinia)

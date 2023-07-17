@@ -1,5 +1,6 @@
 <template>
     <div class="search">
+
         <div class="searchbar">
             <input type="text"
                    id="searchMsg"

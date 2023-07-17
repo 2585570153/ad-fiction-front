@@ -11,6 +11,9 @@
             <p class="fiction-rankinglist-p">首页 > 书名</p>
             <el-main class="search-centre">
                 <br>
+                <img src="http://cloud.aiheadn.cn/fiction/assets/logo.png"
+                     class="search-img-index"
+                >
             <search />
                 <br>
                 <br>
@@ -49,9 +52,16 @@ import Fictionfooter from "@/components/fictionfooter.vue";
 .search-centre{
     padding-left: 250px;
     padding-right: 250px;
+    height: 375px;
 }
 .fiction-footer{
     height: 250px;
     padding: 0;
+}
+.search-img-index{
+    width:400px;
+    height:100px;
+    padding-left: 320px;
+
 }
 </style>

@@ -4,7 +4,7 @@
         <el-affix :offset="240">
             <div class="fiction-read-right">
                 <router-link to="#" class="link">
-                    <svg-icon  iconName="icon-jiarushujia_01" className="fiction-read-affix-ico"></svg-icon>
+                    <svg-icon  iconName="icon-shelf" className="fiction-read-affix-ico" color="#57584b"></svg-icon>
                     <div class="fiction-read-affix-font">
                         加入书架
                     </div>
@@ -15,7 +15,7 @@
         <el-affix :offset="320">
             <div class="fiction-read-right">
                 <router-link to="#" class="link">
-                    <svg-icon  iconName="icon-case" className="fiction-read-affix-ico"></svg-icon>
+                    <svg-icon  iconName="icon-A" className="fiction-read-affix-ico" color="#57584b"></svg-icon>
                     <div class="fiction-read-affix-font">
                         &nbsp;&nbsp;字号
                     </div>
@@ -27,7 +27,7 @@
         <el-affix :offset="400">
             <div class="fiction-read-right">
                 <router-link to="#" class="link">
-                    <svg-icon  iconName="icon-yanse" className="fiction-read-affix-ico"></svg-icon>
+                    <svg-icon  iconName="icon-bright" className="fiction-read-affix-ico" color="#57584b"></svg-icon>
                     <div class="fiction-read-affix-font">
                         &nbsp;&nbsp;背景
                     </div>
@@ -37,7 +37,7 @@
         <el-affix :offset="480">
             <div class="fiction-read-right">
                 <router-link to="#" class="link">
-                    <svg-icon  iconName="icon-jiantou_shangyiye" className="fiction-read-affix-ico"></svg-icon>
+                    <svg-icon  iconName="icon-back" className="fiction-read-affix-ico" color="#57584b"></svg-icon>
                     <div class="fiction-read-affix-font">
                         &nbsp;上一页
                     </div>
@@ -47,7 +47,7 @@
         <el-affix :offset="560">
             <div class="fiction-read-right">
                 <router-link to="#" class="link">
-                    <svg-icon  iconName="icon-jiantou_xiayiye" className="fiction-read-affix-ico"></svg-icon>
+                    <svg-icon  iconName="icon-forward" className="fiction-read-affix-ico" color="#57584b"></svg-icon>
                     <div class="fiction-read-affix-font">
                         &nbsp;下一页
                     </div>

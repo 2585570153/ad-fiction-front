@@ -11,7 +11,7 @@
             <p class="fiction-rankinglist-p">首页 > 书架</p>
             <el-main class="bookrack-centre">
             <Book />
-
+            <br><br><br>
             </el-main>
             <el-footer class="fiction-footer">
                 <fictionfooter />
@@ -25,6 +25,7 @@
 import Fictionfooter from "@/components/fictionfooter.vue";
 import Navigation from "@/views/Layout/components/Navigation.vue";
 import Book from "@/views/BookRack/components/book.vue"
+
 </script>
 
 <style scoped>
@@ -42,8 +43,8 @@ import Book from "@/views/BookRack/components/book.vue"
     padding-left: 160px;
 }
 .bookrack-centre{
-    padding-left: 250px;
-    padding-right: 250px;
+    padding-left: 160px;
+    padding-right: 160px;
 }
 .fiction-footer{
     height: 250px;

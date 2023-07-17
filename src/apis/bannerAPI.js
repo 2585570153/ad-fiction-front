@@ -1,6 +1,7 @@
-import httpInstance from "@/utils/http";
+
+import request from "@/utils/http";
 export function getBanner(){
-    return httpInstance({
+    return request({
         url: '/home/banner'
     })
 }

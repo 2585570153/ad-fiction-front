@@ -27,8 +27,8 @@
             <router-link :to="'/read/'+fictionData.fictionId+'0001'"  class="link">
             <el-button  color="#0BAEFDFF" class="button1"  size="large" type="primary" round>开始阅读</el-button>
             </router-link>
-            <el-button  color="#E0F3FCFF" class="button2" size="large" type="danger" round>加入书架</el-button>
-            <el-button   class="button3" size="large" type="danger" round>等待更新</el-button>
+            <el-button  color="#E0F3FCFF" class="button2" size="large" type="danger" round :plain="true" @click="open1">加入书架</el-button>
+<!--            <el-button   class="button3" size="large" type="danger" round>等待更新</el-button>-->
           </div>
         </el-main>
       </el-container>
@@ -41,9 +41,15 @@
 import {onMounted, ref} from 'vue'
 import { getFictionAPI } from '/src/apis/fictionAPI'
 import { getclick } from '/src/apis/rankinglistAPI'
+import {saveBookIdAPI} from '/src/apis/bookrankAPI'
 import {useRoute} from "vue-router";
 const fictionData = ref({})
+const savebook= ref({})
 const route = useRoute()
+const getsavebook = async ()=>{
+    const res = await saveBookIdAPI(route.params.id)
+    savebook.value=res.msg
+}
 const getFiction = async () =>{
   const  res = await getFictionAPI(route.params.id)
   fictionData.value = res.data
@@ -51,6 +57,14 @@ const getFiction = async () =>{
 const getCkick = async () =>{
     await getclick(route.params.id)
 }
+const open1 = () => {
+    getsavebook();
+    ElMessage({
+        message: savebook,
+        type: 'success',
+    });
+}
+
 onMounted(()=>{
     getFiction()
     getCkick()

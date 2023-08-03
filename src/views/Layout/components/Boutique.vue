@@ -41,7 +41,7 @@ h2:hover{
   width: 1185px;
   height: 150px;
   display: flex;
-  background-image: url(http://cloud.aiheadn.cn/fiction/assets/column-bg1.png);
+  background-image: url(../assets/column-bg1.png);
   border-radius: 10px;
   justify-content: space-between; /* 使子元素平均分布在容器中 */
   background-size: cover; /* 将背景图片缩放到最大值以覆盖整个元素，并保持其宽高比 */

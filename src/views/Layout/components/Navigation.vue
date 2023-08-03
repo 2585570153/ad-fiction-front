@@ -74,7 +74,7 @@
         <el-tabs v-model="activeName"  @tab-click="handleClick">
             <el-tab-pane label="登录" name="first">
                 <br>
-                <img src="http://cloud.aiheadn.cn/fiction/assets/logo.png"
+                <img src="/public/assets/logo.png"
                      width="260"
                      height="70"
                 >
@@ -103,7 +103,7 @@
             </el-tab-pane>
             <el-tab-pane label="注册" name="second">
                 <br>
-                <img src="http://cloud.aiheadn.cn/fiction/assets/logo.png"
+                <img src="/public/assets/logo.png"
                      width="260"
                      height="70"
                 >

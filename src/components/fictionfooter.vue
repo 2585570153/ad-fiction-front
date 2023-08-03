@@ -13,7 +13,7 @@
                 justify-content: center;
                  align-items: center;
                  height: 150px;">
-                    <img src="http://cloud.aiheadn.cn/fiction/assets/logo.png"
+                    <img src="/public/assets/logo.png"
                          width="300"
                          height="80">
                 </div>

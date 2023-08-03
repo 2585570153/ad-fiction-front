@@ -11,7 +11,7 @@
             <p class="fiction-rankinglist-p">首页 > 书名</p>
             <el-main class="search-centre">
                 <br>
-                <img src="http://cloud.aiheadn.cn/fiction/assets/logo.png"
+                <img src="/public/assets/logo.png"
                      class="search-img-index"
                 >
             <search />

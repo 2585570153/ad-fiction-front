@@ -36,6 +36,7 @@ function created(){
 }
 onMounted(() => {
   created();
+
 });
 </script>
 
@@ -50,7 +51,7 @@ onMounted(() => {
 .bodymain{
 
   padding: 30px 159px;
-  background-image: url(http://cloud.aiheadn.cn/fiction/assets/bg1.jpg);
+  background-image: url(../assets/bg1.jpg);
   background-repeat: no-repeat;
 }
 .header{

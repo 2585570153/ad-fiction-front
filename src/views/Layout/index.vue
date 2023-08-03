@@ -12,7 +12,7 @@
         <Banner />
         <News/>
 
-        <Boutique title="男生精选" sub-title="强力推荐，品质保证" href="url(http://cloud.aiheadn.cn/fiction/assets/column-bg1.png)">
+        <Boutique title="男生精选" sub-title="强力推荐，品质保证" href="url(../assets/column-bg1.png)">
             <div class="item"
                  v-for="item in recommendData1"
             >
@@ -30,10 +30,10 @@
               </router-link>
             </div>
         </Boutique>
-        <RankingList href="url(http://cloud.aiheadn.cn/fiction/assets/rank-bg0.png)" bclass="nansheng"/>
+        <RankingList href="url(../assets/rank-bg0.png)" bclass="nansheng"/>
           <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-          <Boutique title="女生精选" sub-title="强力推荐，品质保证" href="url(http://cloud.aiheadn.cn/fiction/assets/column-bg2.png)">
+          <Boutique title="女生精选" sub-title="强力推荐，品质保证" href="url(../assets/column-bg2.png)">
           <div class="item"
                v-for="item in recommendData2"
           >
@@ -51,10 +51,10 @@
             </router-link>
           </div>
         </Boutique>
-        <RankingList href="url(http://cloud.aiheadn.cn/fiction/assets/rank-bg1.png)" bclass="nvsheng"/>
+        <RankingList href="url(../assets/rank-bg1.png)" bclass="nvsheng"/>
          <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-          <Boutique title="出版精选" sub-title="强力推荐，品质保证" href="url(http://cloud.aiheadn.cn/fiction/assets/column-bg3.png)">
+          <Boutique title="出版精选" sub-title="强力推荐，品质保证" href="url(../assets/column-bg3.png)">
           <div class="item"
                v-for="item in recommendData3"
           >
@@ -72,7 +72,7 @@
             </router-link>
           </div>
         </Boutique>
-        <RankingList href="url(http://cloud.aiheadn.cn/fiction/assets/rank-bg2.png)" bclass="chuban"/>
+        <RankingList href="url(../assets/rank-bg2.png)" bclass="chuban"/>
           <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
       </el-main>
@@ -126,7 +126,7 @@ onMounted(() => {
 .bodymain{
 
   padding: 30px 159px;
-  background-image: url(http://cloud.aiheadn.cn/fiction/assets/bg.jpg);
+  background-image: url(../assets/bg.jpg);
   background-repeat: no-repeat;
 
 }

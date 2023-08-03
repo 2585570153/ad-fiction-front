@@ -1,6 +1,6 @@
 <template>
 <div class="new">
-    <img class="img" src="http://cloud.aiheadn.cn/fiction/news.png">
+    <img class="img" src="/public/assets/news.png">
   <div class="container" v-for="item in recommendData">
      <router-link :to="'/detail/'+item.fictionId" class="link">
     <p class="title">{{ item.name }}</p>

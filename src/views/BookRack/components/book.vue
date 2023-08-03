@@ -13,7 +13,7 @@
 
         </div>
         <div class="bookrank-book-null" v-if="!bookRankData">
-        <img src="http://cloud.aiheadn.cn/fiction/assets/logo.png"
+        <img src="/public/assets/logo.png"
              width="400"
              height="100"
         >

@@ -8,7 +8,7 @@
   >
     <div class="flex-grow" />
     <router-link to="/" class="link"><el-menu-item index="0">
-        <img src="http://cloud.aiheadn.cn/fiction/assets/logo.png"
+        <img src="/public/assets/logo.png"
              width="150"
              height="40"
         >

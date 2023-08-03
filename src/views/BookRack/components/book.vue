@@ -52,7 +52,8 @@ onMounted(()=>{
 <style scoped lang="scss">
 .bookrank-book{
     display: flex;
-    //height: 335px;
+    flex-wrap: wrap; /* 当项目水平排满时换行 */
+    max-width: 1300px; /* 适当设置容器的最大宽度 */
 }
 .bookrank-book-null{
     display: flex;
@@ -67,7 +68,7 @@ onMounted(()=>{
     width: 140px;
     height: 180px;
     padding-top: 10px;
-    padding-bottom: 80px;
+    padding-bottom: 100px;
     padding-left: 0px;
     padding-right: 40px;
 }

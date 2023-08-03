@@ -24,7 +24,34 @@ httpInstance.interceptors.request.use(config => {
 }, e => Promise.reject(e))
 
 // axios响应式拦截器
-httpInstance.interceptors.response.use(res =>res.data
+httpInstance.interceptors.response.use(res =>{
+
+    const responseData = res.data; // 从响应中获取数据
+
+    // 根据需要处理 responseData 数据
+
+    if(responseData.code === 500){
+
+        const userValueBeforeRemove = localStorage.getItem('user');
+
+        // 移除 'user'
+        localStorage.removeItem('user');
+
+        // 获取 'user' 的值，如果为 null 则表示移除成功
+        const userValueAfterRemove = localStorage.getItem('user');
+
+        if (userValueBeforeRemove) {
+            console.log('成功移除了 "user" 项');
+            location.reload();
+        } else {
+            console.log('移除 "user" 项失败或无效');
+        }
+
+
+    }
+
+    return responseData; // 将数据返回给调用方
+}
 , e => Promise.reject(e)
 )
 

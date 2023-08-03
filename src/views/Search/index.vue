@@ -52,7 +52,7 @@ import Fictionfooter from "@/components/fictionfooter.vue";
 .search-centre{
     padding-left: 250px;
     padding-right: 250px;
-    height: 375px;
+    /*height: 375px;*/
 }
 .fiction-footer{
     height: 250px;

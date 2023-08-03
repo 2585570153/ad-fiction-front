@@ -44,7 +44,7 @@ import Book from "@/views/BookRack/components/book.vue"
 }
 .bookrack-centre{
     padding-left: 160px;
-    padding-right: 160px;
+    padding-right: 50px;
 }
 .fiction-footer{
     height: 250px;

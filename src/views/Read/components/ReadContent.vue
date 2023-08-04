@@ -56,6 +56,7 @@ const router = useRouter()
 const getcontent = async () =>{
   const  res = await getcontentAPI(route.params.id)
     contentData.value = res.data
+
     const url = res.data.content;
     const txtResponse = await axios.get("http://cloud.aiheadn.cn/txt"+url, { responseType: "arraybuffer" });
 
@@ -124,6 +125,12 @@ watch(
 onMounted(() => {
   getcontent();
     window.addEventListener('keydown', handleKeydown.bind(this));
+    setTimeout(()=>{
+        //需要延迟的代码 :3秒后延迟跳转到首页，可以加提示什么的
+        document.title = contentData.value.title+"-"+fictionData.value.name+"-fiction中文网,小说,小说网,最新热门小说,阅读网站";
+        //延迟时间：1秒
+    },500)
+
 });
 onBeforeMount(() => {
     window.removeEventListener('keydown', handleKeydown);

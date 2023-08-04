@@ -12,13 +12,13 @@
 }
 </style>
 <script setup>
-import {onMounted} from "vue";
-
-onMounted(() => {
- goToExternalSite();
-});
-function goToExternalSite() {
- // 使用 window.location.href 跳转到外部网址
- window.location.href = 'http://book.aiheadn.cn/h5/';
-}
+// import {onMounted} from "vue";
+//
+// onMounted(() => {
+//  goToExternalSite();
+// });
+// function goToExternalSite() {
+//  // 使用 window.location.href 跳转到外部网址
+//  window.location.href = 'http://book.aiheadn.cn/h5/';
+// }
 </script>

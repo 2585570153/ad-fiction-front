@@ -47,12 +47,12 @@ onMounted(() => {
       <div class="container" v-for="(item, index) in fictioncollectList" :key="index">
           <router-link :to="'/detail/'+item.fictionId" class="link">
           <div class="icon">
-          <img  :src="'http://cloud.aiheadn.cn/fiction/assets/'+index+'.png'" alt="" v-if="index === 0 || index === 1 || index === 2">
+          <img  :src="'../assets/'+index+'.png'" alt="" v-if="index === 0 || index === 1 || index === 2">
 
           <div class="caption1" v-if="index === 9">&nbsp;{{ index+1 }}&nbsp;</div>
           <div class="caption" v-if="index !== 0 && index !== 1 && index !== 2 && index !== 9">&nbsp;{{ index+1 }}&nbsp;</div>
 
-         <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="" v-if="index !== 0 && index !== 1 && index !== 2">
+         <img class="img2" src="/public/assets/4.png" alt="" v-if="index !== 0 && index !== 1 && index !== 2">
         </div>
           <div class="title">
           <p>{{ item.name }}</p>
@@ -86,10 +86,10 @@ onMounted(() => {
           <div class="container" v-for="(item, index) in fictionclickList" :key="index">
               <router-link :to="'/detail/'+item.fictionId" class="link">
                   <div class="icon">
-                      <img  :src="'http://cloud.aiheadn.cn/fiction/assets/'+index+'.png'" alt="" v-if="index === 0 || index === 1 || index === 2">
+                      <img  :src="'../assets/'+index+'.png'" alt="" v-if="index === 0 || index === 1 || index === 2">
                       <div class="caption1" v-if="index === 9">&nbsp;{{ index+1 }}&nbsp;</div>
                       <div class="caption" v-if="index !== 0 && index !== 1 && index !== 2 && index !== 9">&nbsp;{{ index+1 }}&nbsp;</div>
-                      <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="" v-if="index !== 0 && index !== 1 && index !== 2">
+                      <img class="img2" src="/public/assets/4.png" alt="" v-if="index !== 0 && index !== 1 && index !== 2">
                   </div>
                   <div class="title">
                       <p>{{ item.name }}</p>
@@ -123,10 +123,10 @@ onMounted(() => {
           <div class="container" v-for="(item, index) in fictionRecommendpageList" :key="index">
               <router-link :to="'/detail/'+item.fictionId" class="link">
                   <div class="icon">
-                      <img  :src="'http://cloud.aiheadn.cn/fiction/assets/'+index+'.png'" alt="" v-if="index === 0 || index === 1 || index === 2">
+                      <img  :src="'../assets/'+index+'.png'" alt="" v-if="index === 0 || index === 1 || index === 2">
                       <div class="caption1" v-if="index === 9">&nbsp;{{ index+1 }}&nbsp;</div>
                       <div class="caption" v-if="index !== 0 && index !== 1 && index !== 2 && index !== 9">&nbsp;{{ index+1 }}&nbsp;</div>
-                      <img class="img2" src="http://cloud.aiheadn.cn/fiction/assets/4.png" alt="" v-if="index !== 0 && index !== 1 && index !== 2">
+                      <img class="img2" src="/public/assets/4.png" alt="" v-if="index !== 0 && index !== 1 && index !== 2">
                   </div>
                   <div class="title">
                       <p>{{ item.name }}</p>
@@ -226,7 +226,7 @@ p:hover{
 
 .bookhome{
   display: block;
-  background-image: url(http://cloud.aiheadn.cn/fiction/assets/rank-bg0.png);
+  background-image: url(../assets/rank-bg0.png);
   border-radius: 20px; /* 设置圆角 */
   position: relative; /* 设置父容器相对定位 */
   overflow: hidden;   /* 消除浮动 两个div合并在一块*/
@@ -235,7 +235,7 @@ p:hover{
 }
 .book{
   display: none;
-  background-image: url(http://cloud.aiheadn.cn/fiction/assets/rank-bg0.png);
+  background-image: url(../assets/rank-bg0.png);
   border-radius: 20px; /* 设置圆角 */
   position: relative; /* 设置父容器相对定位 */
   overflow: hidden;   /* 消除浮动 两个div合并在一块*/
@@ -275,7 +275,7 @@ p:hover{
   left: 260px;
   height:125px;
   width:100px;
-  background-image: url(http://cloud.aiheadn.cn/fiction/assets/cube-book.9e71db9.png);
+  background-image: url(../assets/cube-book.9e71db9.png);
   background-size: contain;
 
 }

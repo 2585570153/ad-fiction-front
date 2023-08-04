@@ -53,6 +53,7 @@ const getsavebook = async ()=>{
 const getFiction = async () =>{
   const  res = await getFictionAPI(route.params.id)
   fictionData.value = res.data
+  document.title = res.data.name+"-fiction中文网,小说,小说网,最新热门小说,阅读网站";
 }
 const getCkick = async () =>{
     await getclick(route.params.id)
@@ -68,13 +69,6 @@ const open1 = () => {
 onMounted(()=>{
     getFiction()
     getCkick()
-    setTimeout(()=>{
-        //需要延迟的代码 :3秒后延迟跳转到首页，可以加提示什么的
-        document.title = fictionData.value.name+"-fiction中文网,小说,小说网,最新热门小说,阅读网站";
-        //延迟时间：1秒
-    },500)
-
-
 })
 </script>
 

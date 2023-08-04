@@ -25,6 +25,7 @@
 </template>
 
 <script setup>
+document.title = "分类"+"-fiction中文网,小说,小说网,最新热门小说,阅读网站";
 import Navigation from "@/views/Layout/components/Navigation.vue";
 import Catalogue from "@/views/Category/components/Catalogue.vue";
 import {onMounted} from "vue";

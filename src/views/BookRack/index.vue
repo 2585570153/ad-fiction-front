@@ -21,6 +21,7 @@
 </template>
 
 <script setup>
+document.title = "书架"+"-fiction中文网,小说,小说网,最新热门小说,阅读网站";
 
 import Fictionfooter from "@/components/fictionfooter.vue";
 import Navigation from "@/views/Layout/components/Navigation.vue";

@@ -33,6 +33,7 @@ import Navigation from "@/views/Layout/components/Navigation.vue";
 import Catalogue from "@/views/Search/components/Catalogue.vue";
 import Search from "@/views/Search/components/search.vue";
 import Fictionfooter from "@/components/fictionfooter.vue";
+document.title = "搜索结果"+"-fiction中文网,小说,小说网,最新热门小说,阅读网站";
 </script>
 
 <style scoped>

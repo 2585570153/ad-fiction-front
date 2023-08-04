@@ -25,6 +25,7 @@
   </template>
   
   <script setup>
+  document.title = "排行榜"+"-fiction中文网,小说,小说网,最新热门小说,阅读网站";
   import Navigation from "@/views/Layout/components/Navigation.vue";
   import Catalogue from "@/views/RankingList/components/Catalogue.vue";
   import {onMounted} from "vue";
@@ -32,6 +33,7 @@
   function created(){
     window.scrollTo(0, 0);
   }
+
   onMounted(() => {
     created();
   });

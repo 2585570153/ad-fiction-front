@@ -58,7 +58,7 @@ const getcontent = async () =>{
     contentData.value = res.data
 
     const url = res.data.content;
-    const txtResponse = await axios.get("http://cloud.aiheadn.cn/txt"+url, { responseType: "arraybuffer" });
+    const txtResponse = await axios.get("http://static.aiheadn.cn/txt"+url, { responseType: "arraybuffer" });
 
 // 将返回的数据视为 ArrayBuffer，然后进行解码
     const decoder = new TextDecoder("GBK");

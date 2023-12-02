@@ -21,7 +21,7 @@
             <div class="footer-section">
                 <h3>联系我们</h3>
                 <p>邮箱: 2585570153@qq.com</p>
-                <p>by：ad</p>
+                <a class="fiction-footer-a" href="http://blog.aiheadn.cn">联系：a.d博客</a>
             </div>
 
         </div>
@@ -86,6 +86,13 @@ ul li a {
     margin: 0 auto;
     color: #777;
 }
-
+.fiction-footer-a {
+    text-decoration: none;
+    color: #000000; /* 修改链接颜色为蓝色 */
+}
+/* 鼠标悬停时修改链接颜色 */
+.fiction-footer-a:hover {
+    color: #ff6600; /* 修改鼠标悬停时的链接颜色为橙色 */
+}
 
 </style>

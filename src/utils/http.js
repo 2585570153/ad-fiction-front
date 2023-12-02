@@ -4,7 +4,7 @@ import router from "@/router";
 import {ElMessage} from "element-plus";
 // 创建axios实例
 const httpInstance = axios.create({
-    baseURL: 'http://58.87.105.89',
+    baseURL: 'http://82.156.142.61',
     timeout: 5000
 })
 

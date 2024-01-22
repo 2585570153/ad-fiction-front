@@ -37,13 +37,12 @@
 </template>
 
 <script setup>
-import{getcontentAPI} from "/src/apis/contentAPI";
+import{getcontentTxtAPI } from "/src/apis/contentAPI";
 import{getFictionAPI} from "@/apis/fictionAPI";
 import { storeToRefs } from 'pinia'
 import {useReadStore} from "@/stores/readstores"
 import {useRoute, useRouter} from "vue-router";
 import {ref, computed, onMounted, watch, onBeforeMount} from "vue";
-import axios from "axios";
 
 const ReadStore = useReadStore();
 let { readid } = storeToRefs(ReadStore);
@@ -54,17 +53,18 @@ const router = useRouter()
 
 
 const getcontent = async () =>{
-  const  res = await getcontentAPI(route.params.id)
+    // const  res = await getcontentAPI(route.params.id)
+    const  res = await getcontentTxtAPI(route.params.id)
     contentData.value = res.data
 
-    const url = res.data.content;
-    const txtResponse = await axios.get("http://static.aiheadn.cn/txt"+url, { responseType: "arraybuffer" });
+//     const url = res.data.content;
+//     const txtResponse = await axios.get("http://static.aiheadn.cn/txt"+url, { responseType: "arraybuffer" });
 
-// 将返回的数据视为 ArrayBuffer，然后进行解码
-    const decoder = new TextDecoder("GBK");
-    const decodedText = decoder.decode(new Uint8Array(txtResponse.data));
+// // 将返回的数据视为 ArrayBuffer，然后进行解码
+//     const decoder = new TextDecoder("GBK");
+//     const decodedText = decoder.decode(new Uint8Array(txtResponse.data));
 
-  text.value = decodedText;
+  text.value = res.data.content;
   const fictionId = res.data.fictionId;
     // 存储pinia
     readid.value = fictionId

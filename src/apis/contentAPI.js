@@ -10,4 +10,11 @@ export function getcontentAPI(id){
         }
     })
 }
-
+export function getcontentTxtAPI(id){
+    return request({
+        url: '/chapter/content/contenttxt',
+        params: {
+            id
+        }
+    })    
+}

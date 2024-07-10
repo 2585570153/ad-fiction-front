@@ -33,14 +33,10 @@ let { readid } = storeToRefs(ReadStore);
         </el-affix>
         <el-affix :offset="260">
             <div class="fiction-read-left">
-
-                <router-link to="#" class="link">
-                    <svg-icon  iconName="icon-menu" className="fiction-read-affix-ico" color="#57584b"></svg-icon>
-                    <div class="fiction-read-affix-font">
-                        目录
-                    </div>
-                </router-link>
-
+                <svg-icon  iconName="icon-menu" className="fiction-read-affix-ico" color="#57584b"></svg-icon>
+                <div class="fiction-read-affix-font">
+                    目录
+                </div>
             </div>
         </el-affix>
 
@@ -60,6 +56,8 @@ let { readid } = storeToRefs(ReadStore);
   border-radius: 10%;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  cursor: pointer;
 }
 .fiction-read-affix-font{
   font-size: 15px;

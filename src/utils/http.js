@@ -1,14 +1,12 @@
 import axios from 'axios'
 
-import router from "@/router";
-import {ElMessage} from "element-plus";
 // 创建axios实例
 const httpInstance = axios.create({
     baseURL: 'http://82.156.142.61',
     timeout: 5000
 })
 
-// baseURL: 'http://8.130.46.218',
+// baseURL: 'http://82.156.142.61',
 // axios请求拦截器
 httpInstance.interceptors.request.use(config => {
     //提取本地的字符串

@@ -21,15 +21,11 @@
       <div v-html="formattedText"></div>
     </div>
     <div class="read-fiction-get">
-      <router-link :to="'/read/'+tempsub" class="link">
-      <el-button  color="#0BAEFDFF" class="read-fiction-button"  size="large" type="primary" round>上一章</el-button>
-      </router-link>
+      <el-button  color="#0BAEFDFF" class="read-fiction-button"  size="large" type="primary" @click="getSwitchChapter('1')" round>上一章</el-button>
       <router-link :to="'/detail/'+fictionData.fictionId" class="link">
       <el-button  color="#0BAEFDFF" class="read-fiction-button" size="large" type="primary" round>目录</el-button>
       </router-link>
-      <router-link :to="'/read/'+tempadd" class="link">
-      <el-button   color="#0BAEFDFF" class="read-fiction-button" size="large" type="primary" round>下一章</el-button>
-      </router-link>
+      <el-button  color="#0BAEFDFF" class="read-fiction-button" size="large" type="primary" @click="getSwitchChapter('2')" round>下一章</el-button>
     </div>
     <el-divider border-style="dashed" />
 
@@ -37,7 +33,8 @@
 </template>
 
 <script setup>
-import{getcontentTxtAPI } from "/src/apis/contentAPI";
+import{switchChapterAPI} from "/src/apis/chapterAPI";
+import{getcontentTXTAPI} from "/src/apis/contentAPI";
 import{getFictionAPI} from "@/apis/fictionAPI";
 import { storeToRefs } from 'pinia'
 import {useReadStore} from "@/stores/readstores"
@@ -51,19 +48,33 @@ const contentData = ref({})
 const fictionData = ref({})
 const router = useRouter()
 
+const text = ref('');
+
+const getSwitchChapter = (type) =>{
+  switchChapterAPI(type,route.params.id,"").then(response => {
+    if( response.code==1){
+      const newRoute = {
+            path: '/read/'+response.data.chapterId// 新的路由路径，将 currentPage 作为路径的一部分
+        };
+        router.push(newRoute);
+    }else{
+      // eslint-disable-next-line no-undef
+      ElMessage({message: response.msg,type: 'error',});
+    }
+    })
+    .catch(error => {
+        console.error('API error:', error);
+    });
+}
 
 const getcontent = async () =>{
-    // const  res = await getcontentAPI(route.params.id)
-    const  res = await getcontentTxtAPI(route.params.id)
+  const  res = await getcontentTXTAPI(route.params.id)
     contentData.value = res.data
-
-//     const url = res.data.content;
-//     const txtResponse = await axios.get("http://static.aiheadn.cn/txt"+url, { responseType: "arraybuffer" });
-
-// // 将返回的数据视为 ArrayBuffer，然后进行解码
-//     const decoder = new TextDecoder("GBK");
-//     const decodedText = decoder.decode(new Uint8Array(txtResponse.data));
-
+    // const url = res.data.content;
+    // const txtResponse = await axios.get("http://static.aiheadn.cn/txt"+url, { responseType: "arraybuffer" });
+// 将返回的数据视为 ArrayBuffer，然后进行解码
+    // const decoder = new TextDecoder("GBK");
+    // const decodedText = decoder.decode(new Uint8Array(txtResponse.data));
   text.value = res.data.content;
   const fictionId = res.data.fictionId;
     // 存储pinia
@@ -75,38 +86,23 @@ const getfiction = async (fictionId) => { // 接收fictionId作为参数
   const res = await getFictionAPI(fictionId);
   fictionData.value = res.data;
 }
-
-
-
-const tempsub = computed(()=>{
-  return  Number(route.params.id)-1
-})
-const tempadd = computed(()=>{
-  return  Number(route.params.id)+1
-})
-const text = ref('');
 const formattedText = computed(() => {
-  return text.value.replace(/\n/g, "<p class='read-fiction-p'>");
+  return text.value.replace(/\n/g, "<p>");
 });
 const reloadPage = () => {
   // 执行刷新页面的逻辑，例如重新加载数据或重新渲染组件等
   // ...
   location.reload(); // 刷新页面
 };
+// 监听键盘事件
 const handleKeydown = (event) => {
     // handle your keydown event here
     if (event.key=='ArrowLeft') {
-        const newRoute = {
-            path: `/read/${route.params.id-1}`// 新的路由路径，将 currentPage 作为路径的一部分
-        };
-        router.push(newRoute);
+      getSwitchChapter('1');
 
     } else if (event.key=='ArrowRight') {
-        const id = Number(route.params.id);
-        const newRoute = {
-            path: `/read/${id+1}`// 新的路由路径，将 currentPage 作为路径的一部分
-        };
-        router.push(newRoute);
+      getSwitchChapter('2');
+
     }
 };
 

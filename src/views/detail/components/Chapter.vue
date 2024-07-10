@@ -56,35 +56,33 @@
 <script lang="ts" setup>
 import {ref, computed, onMounted} from 'vue'
 import SideColumn from "/src/views/detail/components/SideColumn.vue";
-
 import{getchapterAPI} from "/src/apis/chapterAPI";
-import{getcontentTxtAPI } from "/src/apis/contentAPI";
+import{getcontentTXTAPI} from "/src/apis/contentAPI";
 import {useRoute} from "vue-router";
-import axios from "axios";
 const chapterData = ref([])
 const contentData = ref({})
 const route = useRoute()
 const getchapter = async () =>{
   const  res = await getchapterAPI(route.params.id)
   chapterData.value = res.data
-}
-const getcontent = async () =>{
-  const  res = await getcontentTxtAPI(route.params.id+"0001")
-  contentData.value = res.data
-//     const url = res.data.content;
-//     const txtResponse = await axios.get("http://static.aiheadn.cn/txt"+url, { responseType: "arraybuffer" });
-
-// // 将返回的数据视为 ArrayBuffer，然后进行解码
-//     const decoder = new TextDecoder("GBK");
-//     const decodedText = decoder.decode(new Uint8Array(txtResponse.data));
-     originalText.value = res.data.content
-
+  const  resTXT = await getcontentTXTAPI(chapterData.value[0].chapterId)
+  contentData.value = resTXT.data
+  originalText.value = resTXT.data.content
 
 }
+// const getcontent = async () =>{
+//   const  res = await getcontentTXTAPI(chapterData.value[0].chapterId)
+//   contentData.value = res.data
+    // const url = res.data.content;
+    // const txtResponse = await axios.get("http://static.aiheadn.cn/txt"+url, { responseType: "arraybuffer" });
+// 将返回的数据视为 ArrayBuffer，然后进行解码
+    // const decoder = new TextDecoder("GBK");
+    // const decodedText = decoder.decode(new Uint8Array(txtResponse.data));
+    //  originalText.value = res.data.content
+// }
 
 onMounted(() => {
   getchapter();
-  getcontent();
 });
 
 const activeName = ref('first')

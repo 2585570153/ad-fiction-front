@@ -7,14 +7,17 @@ export function getcontentAPI(id){
         url: '/chapter/content/contentid',
         params: {
             id
-        }
+        },
+        method: 'GET'
     })
 }
-export function getcontentTxtAPI(id){
+
+export function getcontentTXTAPI(id){
     return request({
         url: '/chapter/content/contenttxt',
         params: {
             id
-        }
-    })    
+        },
+        method: 'GET'
+    })
 }

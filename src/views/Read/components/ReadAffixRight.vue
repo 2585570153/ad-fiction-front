@@ -11,8 +11,8 @@
         </el-affix>
 
         <el-affix :offset="320">
-            <el-popover :visible="fontVisible" placement="left" :width="500" title="字号-请选择字号大小">
-                <div style="text-align: right; margin: 0">
+            <el-popover :visible="fontVisible" placement="left" :width="500" title="字号">
+                <div style="text-align: center; margin: 0">
                     <el-input-number v-model="fontNum" :min="18" :max="48" @change="handleChange" />
                 </div>
                 <template #reference>

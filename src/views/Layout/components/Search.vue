@@ -1,5 +1,5 @@
 <template>
-  <div class="demo-input-size">
+  <div>
     <el-input
         v-model="input2"
         class="w-50 m-2 "
@@ -27,8 +27,21 @@ function handleEnter() {
 }
 </script>
 <style scoped>
-.demo-input-size{
-  margin: 10px 20px;
+:deep(.el-input__wrapper){
+  display: inline-flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 11px;
+  background-color: var(--el-input-bg-color, var(--el-fill-color-blank));
+  background-image: none;
+  border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
+  transition: var(--el-transition-box-shadow);
+  transform: translate3d(0, 0, 0);
+  margin-left: 150px;
+  margin-right: 50px;
+  box-shadow: 0 0 0 1px var(--el-input-border-color, var(--el-border-color)) inset;
+  width: 270px;
 }
 
 </style>

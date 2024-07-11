@@ -6,23 +6,19 @@
       :ellipsis="false"
       @select="handleSelect"
   >
-    <div class="flex-grow" />
-    <router-link to="/" class="link"><el-menu-item index="0">
+    <router-link to="/" class="link">
+        <el-menu-item index="0">
         <img src="/public/assets/logo.png"
              width="150"
              height="40"
         >
-    </el-menu-item></router-link>
+        </el-menu-item>
+    </router-link>
     <router-link to="/" class="link"><el-menu-item index="1" >首页</el-menu-item></router-link>
-    <div class="flex-grow1" />
     <router-link to="/category/nansheng/1" class="link"><el-menu-item index="2">分类</el-menu-item></router-link>
-    <div class="flex-grow1" />
     <router-link to="/rankinglist/nansheng/1/collect" class="link"> <el-menu-item index="3">排行榜</el-menu-item></router-link>
-    <div class="flex-grow1" />
-      <router-link to="/bookrank" class="link"><el-menu-item index="4">书架</el-menu-item></router-link>
-    <div class="flex-grow" />
-      <Search />
-    <div class="flex-grow" />
+    <router-link to="/bookrank" class="link"><el-menu-item index="4">书架</el-menu-item></router-link>
+    <Search />
      <template v-if="userObj">
      <div class="navigation-user">
          <div class="navigation-user-name">{{userInfo.nickname}}</div>
@@ -58,8 +54,6 @@
           </el-button>
       </el-menu-item>
       </template>
-
-    <div class="flex-grow" />
   </el-menu>
 
 
@@ -266,7 +260,44 @@ onMounted(() => {
 </script>
 
 <style>
+/* 导航样式 */
+.el-menu--horizontal {
+    display: flex;
+    flex-wrap: nowrap;
+    border-bottom: solid 1px var(--el-menu-border-color);
+    border-right: none;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10%;
+}
+/* 导航元素 */
+.el-menu-item {
+    display: flex;
+    align-items: center;
+    height: var(--el-menu-item-height);
+    line-height: var(--el-menu-item-height);
+    font-size: var(--el-menu-item-font-size);
+    color: var(--el-menu-text-color);
+    padding: 0 var(--el-menu-base-level-padding);
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    transition: border-color var(--el-transition-duration), background-color var(--el-transition-duration), color var(--el-transition-duration);
+    box-sizing: border-box;
+    white-space: nowrap;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+/* 导航实时小角标 */
+.el-menu-item.is-active {
+    color: var(--el-menu-active-color);
+    text-decoration: underline;
+    text-decoration-color: var(--el-menu-active-color);
+    text-decoration-thickness: 4px; /* 你可以调整这个值来改变下划线的粗细 */
+    text-underline-offset: 20px; /* 调整这个值来改变下划线的平移距离 */
 
+}
 .flex-grow {
   flex-grow: 1;
 
@@ -280,6 +311,10 @@ onMounted(() => {
 }
 .el-menu-demo {
     background-color: #F5F5F8FF; /* 修改背景颜色 */
+    height: 70px;
+}
+.el-header{
+    --el-header-height: 70px;
 }
 .navigation-footer{
     display: flex;

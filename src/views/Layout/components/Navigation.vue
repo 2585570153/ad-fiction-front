@@ -9,8 +9,8 @@
     <router-link to="/" class="link">
         <el-menu-item index="0">
         <img src="/public/assets/logo.png"
-             width="150"
-             height="40"
+             width="165"
+             height="55"
         >
         </el-menu-item>
     </router-link>
@@ -20,27 +20,25 @@
     <router-link to="/bookrank" class="link"><el-menu-item index="4">书架</el-menu-item></router-link>
     <Search />
      <template v-if="userObj">
-     <div class="navigation-user">
-         <div class="navigation-user-name">{{userInfo.nickname}}</div>
-         <el-dropdown @command="handleCommand">
-            <span>
-             <el-avatar
-                     :src=userInfo.headportrait
-             />
-<!--             <el-icon class="el-icon&#45;&#45;right">-->
-<!--                 <arrow-down />-->
-<!--             </el-icon>-->
-             </span>
-             <template #dropdown>
-                 <el-dropdown-menu>
-                     <el-dropdown-item command="a">个人中心</el-dropdown-item>
-                     <el-dropdown-item divided command="b">退出登录</el-dropdown-item>
-                 </el-dropdown-menu>
-             </template>
+    <el-menu-item >
+        <div class="navigation-user">
+            <div class="navigation-user-name">{{userInfo.nickname}}</div>
+            <el-dropdown @command="handleCommand">
+                <span>
+                <el-avatar
+                        :src=userInfo.headportrait
+                />
+                </span>
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <el-dropdown-item command="a">个人中心</el-dropdown-item>
+                        <el-dropdown-item divided command="b">退出登录</el-dropdown-item>
+                    </el-dropdown-menu>
+                </template>
 
-         </el-dropdown>
-
-     </div>
+            </el-dropdown>
+        </div>
+    </el-menu-item>
 
      </template>
       <template v-else>
@@ -269,7 +267,7 @@ onMounted(() => {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 10%;
+    padding-left: 6%;
 }
 /* 导航元素 */
 .el-menu-item {
@@ -288,6 +286,7 @@ onMounted(() => {
     white-space: nowrap;
     padding-right: 30px;
     padding-left: 30px;
+    font-size: 16px;
 }
 /* 导航实时小角标 */
 .el-menu-item.is-active {
@@ -310,7 +309,7 @@ onMounted(() => {
   color: inherit; /* 继承父元素的文本颜色 */
 }
 .el-menu-demo {
-    background-color: #F5F5F8FF; /* 修改背景颜色 */
+    background-color: #F7F7F8; /* 修改背景颜色 */
     height: 70px;
 }
 .el-header{
@@ -327,7 +326,6 @@ onMounted(() => {
 }
 .navigation-user-name{
     padding-right: 12px;
-    margin-top: 12px;
     font-size: 20px;
 }
 .el-icon--right{

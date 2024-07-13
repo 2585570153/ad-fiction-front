@@ -9,4 +9,5 @@ import MobileRouter from '@/components/MobileRouter.vue'
 </template>
 
 <style scoped>
+
 </style>

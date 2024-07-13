@@ -16,5 +16,31 @@
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
+  <style>
+    /* 由于popper是写在app外面，所以直接通过index去控制 */
+    .read-directory-popover .el-popover__title{
+      font-size: 30px !important;
+      margin-top: 20px;
+
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: center;
+    }
+    .read-directory-popover{
+      height: 100%;
+      overflow-y: auto;
+    }
+    .read-popover .el-popover__title {
+    color: var(--el-popover-title-text-color);
+    font-size: 18px;
+    line-height: 1;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    }
+    /* .read-popover .el-popper__arrow::before {
+      background: var(--read-background-color1)!important;
+  } */
+  </style>
 </html>
 

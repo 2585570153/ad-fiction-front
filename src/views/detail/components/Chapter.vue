@@ -30,6 +30,11 @@
             <template #label>
               <span class="custom-tabs-label"><span>目录</span></span>
             </template>
+            <el-row justify="end">
+                    <el-col :span="4">
+                        <el-button @click="toggleOrder" :icon="Sort">{{ ascending ? '倒序显示' : '正序显示' }}</el-button>
+                    </el-col>
+            </el-row>
             <div class="title">
 
               <div class="chapter-item" v-for="item in chapterData">
@@ -58,18 +63,28 @@ import {ref, computed, onMounted} from 'vue'
 import SideColumn from "/src/views/detail/components/SideColumn.vue";
 import{getchapterAPI} from "/src/apis/chapterAPI";
 import{getcontentTXTAPI} from "/src/apis/contentAPI";
+import {Sort} from '@element-plus/icons-vue'
 import {useRoute} from "vue-router";
 const chapterData = ref([])
 const contentData = ref({})
 const route = useRoute()
+const ascending = ref(true) // 初始状态为正序显示
+
 const getchapter = async () =>{
   const  res = await getchapterAPI(route.params.id)
   chapterData.value = res.data
   const  resTXT = await getcontentTXTAPI(chapterData.value[0].chapterId)
   contentData.value = resTXT.data
   originalText.value = resTXT.data.content
-
 }
+const toggleOrder = () => {
+    ascending.value = !ascending.value;
+    if (ascending.value) {
+      chapterData.value.sort((a, b) => a.chapterId - b.chapterId); // 正序排列
+    } else {
+      chapterData.value.sort((a, b) => b.chapterId - a.chapterId); // 倒序排列
+    }
+  }
 // const getcontent = async () =>{
 //   const  res = await getcontentTXTAPI(chapterData.value[0].chapterId)
 //   contentData.value = res.data
@@ -98,7 +113,7 @@ const formattedText = computed(() => {
 
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 .custom-tabs-label{
   font-size: 25px;
   font-weight: bold;
@@ -143,6 +158,5 @@ const formattedText = computed(() => {
   margin-top:20px;
   line-height: 3;
   font-size: 19px;
-  //white-space: pre-wrap; /* 允许换行 */
 }
 </style>

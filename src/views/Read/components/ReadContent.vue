@@ -40,6 +40,7 @@ import { storeToRefs } from 'pinia'
 import {useReadStore} from "@/stores/readstores"
 import {useRoute, useRouter} from "vue-router";
 import {ref, computed, onMounted, watch, onBeforeMount} from "vue";
+import Storage from "responsive-storage";
 
 const ReadStore = useReadStore();
 let { readid } = storeToRefs(ReadStore);
@@ -47,7 +48,7 @@ const route = useRoute()
 const contentData = ref({})
 const fictionData = ref({})
 const router = useRouter()
-
+const root = document.documentElement;
 const text = ref('');
 
 const getSwitchChapter = (type) =>{
@@ -126,6 +127,10 @@ onMounted(() => {
         document.title = contentData.value.title+"-"+fictionData.value.name+"-fiction中文网,小说,小说网,最新热门小说,阅读网站";
         //延迟时间：1秒
     },500)
+    root.style.setProperty('--read-font-size', Storage.get("fiction_cssReadFontSize")+'px');
+    root.style.setProperty('--read-font-space', Storage.get("fiction_cssReadFontSpace"));
+    root.style.setProperty('--read-background-color0', Storage.get("fiction_cssReadBackgroundColor").color0);
+    root.style.setProperty('--read-background-color1', Storage.get("fiction_cssReadBackgroundColor").color1);
 
 });
 onBeforeMount(() => {
@@ -135,7 +140,7 @@ onBeforeMount(() => {
 
 <style scoped>
 .read-content{
-  background-color: #ebe8e0;
+  background-color: var(--read-background-color1);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -158,13 +163,14 @@ onBeforeMount(() => {
 }
 .read-fiction-book{
   width:93%;
-  font-size:24px;
+  font-size:var(--read-font-size);
   text-indent: 3em; /* 设置缩进量，可以根据需要调整 */
-  line-height: 3; /* 设置行间距，可以根据需要调整 */
+  line-height: var(--read-font-space); /* 设置行间距，可以根据需要调整 */
 }
 .read-fiction-button{
   color: white;
   margin-right: 40px; /* 设置合适的右边距值 */
   width: 200px;
 }
+
 </style>

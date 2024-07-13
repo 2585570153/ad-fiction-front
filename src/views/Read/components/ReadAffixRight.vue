@@ -11,12 +11,15 @@
         </el-affix>
 
         <el-affix :offset="320">
-            <el-popover :visible="fontVisible" placement="left" :width="500" title="字号">
-                <div style="text-align: center; margin: 0">
-                    <el-input-number v-model="fontNum" :min="18" :max="48" @change="handleChange" />
+            <el-popover :visible="fontVisible" placement="left" :width="240" title="布局" popper-class="read-popover">
+                 <div style="display: flex;  margin-bottom: 10px;">
+                   <div style="font-size: 17px; width: 60px;">字号：</div><el-input-number v-model="fontSize" :min="18" :max="48" @change="fontHandleChange" />
+                </div>
+                <div style="display: flex;">
+                    <div style="font-size: 17px; width: 60px;">间距：</div><el-input-number v-model="fontSpace" :min="1" :max="6" @change="spaceHandleChange" />
                 </div>
                 <template #reference>
-                <div class="fiction-read-right" @click="fontVisible = !fontVisible">
+                <div class="fiction-read-right" @click="toggleVisibility('font')">
                     <svg-icon  iconName="icon-A" className="fiction-read-affix-ico" color="#57584b"></svg-icon>
                     <div class="fiction-read-affix-font">
                         字号
@@ -28,12 +31,24 @@
 
 
         <el-affix :offset="400">
-            <div class="fiction-read-right">
-                <svg-icon  iconName="icon-bright" className="fiction-read-affix-ico" color="#57584b"></svg-icon>
-                <div class="fiction-read-affix-font">
-                    背景
+            <el-popover :visible="brightVisible" placement="left" :width="400" title="背景" popper-class="read-popover">
+                <div class="color-container">
+                    <div
+                    v-for="(color, index) in state.colors"
+                    :key="index"
+                    :style="circleStyle(color, index === state.selectedIndex)"
+                    @click="handleColorClick(color)"
+                    ></div>
                 </div>
-            </div>
+                <template #reference>
+                    <div class="fiction-read-right" @click="toggleVisibility('bright')">
+                        <svg-icon  iconName="icon-bright" className="fiction-read-affix-ico" color="#57584b"></svg-icon>
+                        <div class="fiction-read-affix-font">
+                            背景
+                        </div>
+                    </div>
+                </template>
+            </el-popover>
         </el-affix>
         <el-affix :offset="480">
             <div class="fiction-read-right" @click="getSwitchChapter('1')">
@@ -57,10 +72,30 @@
 <script setup>
 import{switchChapterAPI} from "/src/apis/chapterAPI";
 import {useRoute, useRouter} from "vue-router";
-import { ref } from 'vue'
-const fontVisible = ref(false)
-const fontNum = ref(21)
+import { ref,reactive} from 'vue'
+import Storage from "responsive-storage";
+const state = reactive({
+      colors: ['#EFEBE2', '#F0EFEF', '#F4F6F1', '#FBF6F6','#EDEFF2'], // 示例颜色
+      selectedIndex: Storage.get("fiction_cssReadBackgroundColorIndex"), // 假设第三个颜色是选中状态
+    });
 
+const fontVisible = ref(false)
+const brightVisible = ref(false)
+function toggleVisibility(target) {
+  if (target === 'font') {
+    fontVisible.value = !fontVisible.value
+    if (fontVisible.value && brightVisible.value) {
+      brightVisible.value = false
+    }
+  } else if (target === 'bright') {
+    brightVisible.value = !brightVisible.value
+    if (brightVisible.value && fontVisible.value) {
+      fontVisible.value = false
+    }
+  }
+}
+const fontSize = ref(Storage.getData("cssReadFontSize","fiction_"))
+const fontSpace = ref(Storage.getData("cssReadFontSpace","fiction_"))
 const route = useRoute();
 const router = useRouter();
 const getSwitchChapter = (type) =>{
@@ -78,13 +113,64 @@ const getSwitchChapter = (type) =>{
         console.error('API error:', error);
     });
 }
+const root = document.documentElement;
+const fontHandleChange = (value) => {
+    // 获取根元素
+    root.style.setProperty('--read-font-size', value+'px');
+    Storage.set("fiction_cssReadFontSize",value)
+    }
+const spaceHandleChange = (value) => {
+    // 获取根元素
+    root.style.setProperty('--read-font-space', value);
+    Storage.set("fiction_cssReadFontSpace",value)
+}
+
+// 处理颜色块点击事件
+const handleColorClick = (color) => {
+    const index = state.colors.indexOf(color);
+    var color0;
+    var color1;
+    if( index == 0){
+        color0='#DED9C6';
+        color1='#EFEBE2';
+    } else if( index == 1){
+        color0='#E0E0E0';
+        color1='#F0EFEF';
+    }else if( index == 2){
+        color0='#E6EFE4';
+        color1='#F4F6F1';
+    }else if( index == 3){
+        color0='#F6EFEF';
+        color1='#FBF6F6';
+    }else if( index == 4){
+        color0='#D9E0E8';
+        color1='#EDEFF2';
+    }
+    root.style.setProperty('--read-background-color0', color0);
+    root.style.setProperty('--read-background-color1', color1);
+    Storage.set("fiction_cssReadBackgroundColor",{"color0":color0,"color1":color1});
+    Storage.set("fiction_cssReadBackgroundColorIndex",index);
+    state.selectedIndex = index;
+
+};
+
+// 动态生成样式的函数
+const circleStyle = (color, isSelected) => ({
+    backgroundColor: color,
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    display: 'inline-block',
+    cursor: 'pointer',
+    border: isSelected ? '3px solid rgb(36 177 237 / 65%)' : 'none', // 示例：选中状态添加边框
+});
 </script>
 
 <style scoped lang="scss">
 
 .fiction-read-right{
   display: flex;
-  background-color: #EDEAE1FF;
+  background-color: var(--read-background-color1);
   box-shadow: 0 0 1px #a19e9e;
   float: left;
   width: 75px;
@@ -109,8 +195,10 @@ const getSwitchChapter = (type) =>{
     padding-right: 12px;
     width: 30px;
     height: 30px;
-
-
 }
-
+.color-container {
+  display: flex;
+  justify-content: space-between; /* 元素水平分布 */
+  gap: 10px; /* 可选：元素之间的间距 */
+}
 </style>

@@ -12,6 +12,7 @@
     "element-plus": "^2.3.4",
     "pinia": "^2.0.36",
     "pinia-plugin-persistedstate": "^3.1.0",
+    "responsive-storage": "^2.2.0",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

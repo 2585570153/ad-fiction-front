@@ -148,11 +148,11 @@
 <script lang="ts" setup>
 // import { ArrowDown } from '@element-plus/icons-vue'
 import {ref, reactive, onMounted} from 'vue'
+import { useRouter} from "vue-router";
 import Search from "./Search.vue";
 import {UserRegisterAPI,UserInfoAPI,UserLogoutAPI} from '/src/apis/userAPI';
 import {useUserStore} from "@/stores/userstore"
 import {storeToRefs} from "pinia";
-import router from "@/router";
 const login = reactive({
     username: '',
     password: '',
@@ -167,7 +167,7 @@ const register = reactive({
 
 const userStore = useUserStore()
 const Registermsg = ref('')
-
+const router = useRouter()
 const userInfo = ref({})
 
 
@@ -230,6 +230,12 @@ const registerbutton =()=>{
     centerDialogVisible.value= false;
 }
 const handleCommand = (command: string | number | object) => {
+    if (command === 'a'){
+        const newRoute = {
+            path: '/info'// 新的路由路径，将 currentPage 作为路径的一部分
+        };
+        router.push(newRoute);
+    }
     if (command === 'b'){
         getUserLogout()
         localStorage.removeItem('user');

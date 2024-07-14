@@ -3,11 +3,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/Login/index.vue'
 import Layout from '@/views/Layout/index.vue'
 import detail from '@/views/detail/index.vue';
-import read from '@/views/read/index.vue';
-import Category from '@/views/category/index.vue';
+import read from '@/views/Read/index.vue';
+import Category from '@/views/Category/index.vue';
+import Info from '@/views/Info/index.vue';
 import RankingList from '@/views/RankingList/index.vue';
 import mobile from '@/mobile/index.vue';
-import search from '@/views/search/index.vue';
+import search from '@/views/Search/index.vue';
 import bookrank from '@/views/BookRack/index.vue';
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,6 +50,10 @@ const router = createRouter({
         {
             path: '/mobile',
             component: mobile
+        },
+        {
+            path: '/info',
+            component:Info
         }
     ]
 })

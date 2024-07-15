@@ -9,8 +9,8 @@
     <router-link to="/" class="link">
         <el-menu-item index="0">
         <img src="/public/assets/logo.png"
-             width="165"
-             height="55"
+             width="150"
+             height="50"
         >
         </el-menu-item>
     </router-link>
@@ -22,11 +22,11 @@
      <template v-if="userObj">
     <el-menu-item >
         <div class="navigation-user">
-            <div class="navigation-user-name">{{userInfo.nickname}}</div>
+            <div class="navigation-user-name">{{userObj.data.nickname}}</div>
             <el-dropdown @command="handleCommand">
                 <span>
                 <el-avatar
-                        :src=userInfo.headportrait
+                        :src=userObj.data.headPortrait
                 />
                 </span>
                 <template #dropdown>
@@ -147,12 +147,12 @@
 </template>
 <script lang="ts" setup>
 // import { ArrowDown } from '@element-plus/icons-vue'
-import {ref, reactive, onMounted} from 'vue'
+import {ref, reactive, onMounted,defineExpose} from 'vue'
 import { useRouter} from "vue-router";
 import Search from "./Search.vue";
 import {UserRegisterAPI,UserInfoAPI,UserLogoutAPI} from '/src/apis/userAPI';
-import {useUserStore} from "@/stores/userstore"
-import {storeToRefs} from "pinia";
+import Storage from "responsive-storage";
+import {UserLoginAPI} from "@/apis/userAPI";
 const login = reactive({
     username: '',
     password: '',
@@ -165,21 +165,36 @@ const register = reactive({
 })
 
 
-const userStore = useUserStore()
 const Registermsg = ref('')
 const router = useRouter()
 const userInfo = ref({})
 
 
-//提取本地的字符串
-const userstring = localStorage.getItem('user');
-// json字符串转化为json对象
-var userObj = JSON.parse(userstring);
+
+var userObj = Storage.get("fiction_userInfo");
 
 
 
 async function getUserInfo(){
-    await userStore.getUserInfo(login.username,login.password)
+    const res =await UserLoginAPI(login)
+    if(res.code == 1){
+        Storage.set("fiction_userInfo",res)
+        ElMessage({
+            message: res.msg,
+            type: 'success',
+        });
+        centerDialogVisible.value= false;
+        setTimeout(()=>{
+            //需要延迟的代码 :3秒后延迟跳转到首页，可以加提示什么的
+            location.reload();
+            //延迟时间：1秒
+        },1000)
+    }else{
+        ElMessage({
+            message: res.msg,
+            type: 'error',
+        });
+    }
 }
 
 
@@ -192,8 +207,10 @@ const getUserLogout = async ()=>{
 
 }
 const UserInfo = async ()=>{
-    const res = await UserInfoAPI()
-    userInfo.value=res.data
+    if(userObj){
+        const res = await UserInfoAPI()
+        userInfo.value=res.data
+    }
 }
 const Registermessage =()=>{
     ElMessage({
@@ -202,26 +219,10 @@ const Registermessage =()=>{
     });
 }
 
-const { usermsg } = storeToRefs(userStore);
 
-
-const message =()=>{
-    ElMessage({
-        message: usermsg,
-        type: 'success',
-    });
-
-}
 
 const loginbutton =()=>{
     getUserInfo();
-    message();
-    centerDialogVisible.value= false;
-    setTimeout(()=>{
-        //需要延迟的代码 :3秒后延迟跳转到首页，可以加提示什么的
-        location.reload();
-        //延迟时间：1秒
-    },1000)
 
 }
 const registerbutton =()=>{
@@ -238,7 +239,7 @@ const handleCommand = (command: string | number | object) => {
     }
     if (command === 'b'){
         getUserLogout()
-        localStorage.removeItem('user');
+        localStorage.removeItem('fiction_userInfo');
         location.reload();
     }
 }
@@ -261,6 +262,10 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 onMounted(() => {
     UserInfo();
 });
+// 重点！！这里需要使用defineExpose暴露出去
+defineExpose({
+centerDialogVisible
+})
 </script>
 
 <style>
@@ -337,4 +342,5 @@ onMounted(() => {
 .el-icon--right{
     padding:5px;
 }
+
 </style>

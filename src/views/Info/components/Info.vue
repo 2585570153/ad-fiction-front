@@ -72,6 +72,7 @@
             <div v-if="activeMenu === '2'">
                 修改密码
                 <el-divider />
+                <div class="only-height" />
                 <el-form :model="passwordForm" label-width="200px" >
                 <el-form-item label="新密码">
                     <el-input v-model="passwordForm.password" type="password"></el-input>
@@ -80,9 +81,25 @@
                     <el-input v-model="passwordForm.isPassword" type="password"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" native-type="submit" @click="handlePasswordChange()">提交</el-button>
+                    <el-button type="primary" @click="handlePasswordChange()">提交</el-button>
                 </el-form-item>
                 </el-form>
+                <div class="only-height" />
+                <div style="display: flex; padding-left: 3%">
+                <div style="color: red; flex: 1; margin-right: 20px">
+                    <p><strong>修改密码声明：</strong></p>
+                    <p>1. 请确保您处于安全的网络环境下进行密码修改。</p>
+                    <p>2. 请不要向任何人透露您的密码。</p>
+                    <p>3. 系统不会以任何形式索要您的密码，请警惕诈骗信息。</p>
+                    <p>4. 密码应包含字母、数字和特殊字符，以增强安全性。</p>
+                </div>
+                <div style="color: red; flex: 1">
+                    <p><strong>修改密码注意事项：</strong></p>
+                    <p>1. 请确保新密码与旧密码不同。</p>
+                    <p>2. 请牢记新密码，避免遗忘。</p>
+                    <p>3. 如有任何问题，请及时联系客服或管理员。</p>
+                </div>
+                </div>
             </div>
             <div v-if="activeMenu === '3'">
                 公告信息
@@ -125,13 +142,10 @@ const UserInfo = async ()=>{
     previewImage.value=res.data.headPortrait;
 }
   const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
    }
   const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
   }
   const handleSelect=(key: string, keyPath: string[])=> {
-    console.log(key, keyPath)
       activeMenu.value = key;
     }
 const handlePasswordChange = () => {
@@ -144,7 +158,7 @@ const handlePasswordChange = () => {
     }
 
     UserPasswordAPI(passwordForm).then(res => {
-        if (res.code == 0) {
+        if (res.code == 1) {
             ElMessage({message: res.msg,type: 'success',});
         } else {
             ElMessage({message: res.msg,type: 'error',});
@@ -153,8 +167,6 @@ const handlePasswordChange = () => {
         }).catch(error => {
         console.error('API error:', error);
     });
-
-     
 }
 
 const beforeAvatarUpload = (file) => {
@@ -187,8 +199,9 @@ const beforeAvatarUpload = (file) => {
 };
 const saveInfo = () => {
     UserUpdateAPI(userInfo.value).then(res => {
-        if (res.code == 0) {
+        if (res.code == 1) {
             ElMessage({message: res.msg,type: 'success',});
+            setTimeout(function() {location.reload();}, 2000); // 延迟2秒刷新页面
         } else {
             ElMessage({message: res.msg,type: 'error',});
 
@@ -265,5 +278,12 @@ const saveInfo = () => {
   display: block;
   border-radius: 50%; /* 设置圆形 */
 }
-  </style>
-  
+.only-height {
+  height: 30px; /* 设置你想要的高度值 */
+}
+p{
+    
+  font-size: 14px;
+  font-weight: bold;
+}
+</style>

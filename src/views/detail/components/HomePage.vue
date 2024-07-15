@@ -44,11 +44,20 @@ import { getclick } from '/src/apis/rankinglistAPI'
 import {saveBookIdAPI} from '/src/apis/bookrankAPI'
 import {useRoute} from "vue-router";
 const fictionData = ref({})
-const savebook= ref({})
 const route = useRoute()
 const getsavebook = async ()=>{
     const res = await saveBookIdAPI(route.params.id)
-    savebook.value=res.msg
+    if(res.code==1){
+      ElMessage({
+        message: res.msg,
+        type: 'success',
+    });
+    }else{
+      ElMessage({
+        message: res.msg,
+        type: 'error',
+    });
+    }
 }
 const getFiction = async () =>{
   const  res = await getFictionAPI(route.params.id)
@@ -60,10 +69,6 @@ const getCkick = async () =>{
 }
 const open1 = () => {
     getsavebook();
-    ElMessage({
-        message: savebook,
-        type: 'success',
-    });
 }
 
 onMounted(()=>{

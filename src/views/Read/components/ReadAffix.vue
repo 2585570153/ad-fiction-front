@@ -7,6 +7,7 @@ import{getchapterAPI} from "/src/apis/chapterAPI";
 import { ref,onMounted} from 'vue'
 import {useRoute} from "vue-router";
 import {Sort} from '@element-plus/icons-vue'
+import Storage from "responsive-storage";
 
 const route = useRoute()
 const ReadStore = useReadStore();
@@ -44,9 +45,23 @@ const toggleOrder = () => {
       chapterData.value.sort((a, b) => b.chapterId - a.chapterId); // 倒序排列
     }
   }
+  var userObj = Storage.get("fiction_userInfo");
+
 </script>
 <template>
-
+    <template v-if="userObj">
+        <el-affix :offset="20">
+            <div class="fiction-read-left-head">
+                <router-link to="/info" class="link">
+                    <span>
+                    <el-avatar
+                            :src=userObj.data.headPortrait
+                    />
+                    </span>
+                </router-link>
+            </div>
+        </el-affix>
+    </template>
         <el-affix :offset="100">
             <div class="fiction-read-left">
                 <router-link to="/" class="link">
@@ -115,6 +130,19 @@ const toggleOrder = () => {
   align-items: center;
   flex-direction: column;
   cursor: pointer;
+}
+.fiction-read-left-head{
+
+display: flex;
+float: right;
+width: 75px;
+height: 75px;
+margin-right: 8px;
+border-radius: 10%;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+cursor: pointer;
 }
 .fiction-read-affix-font{
   font-size: 15px;

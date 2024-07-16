@@ -2,7 +2,7 @@
 
 
         <el-affix :offset="240">
-            <div class="fiction-read-right">
+            <div class="fiction-read-right" @click="getsavebook()">
                 <svg-icon  iconName="icon-shelf" className="fiction-read-affix-ico" color="#57584b"></svg-icon>
                 <div class="fiction-read-affix-font">
                     加入书架
@@ -74,6 +74,11 @@ import{switchChapterAPI} from "/src/apis/chapterAPI";
 import {useRoute, useRouter} from "vue-router";
 import { ref,reactive} from 'vue'
 import Storage from "responsive-storage";
+import {storeToRefs} from "pinia";
+import {useReadStore} from "@/stores/readstores"
+import {saveBookIdAPI} from '/src/apis/bookrankAPI'
+const ReadStore = useReadStore();
+let { readid } = storeToRefs(ReadStore);
 const state = reactive({
       colors: ['#EFEBE2', '#F0EFEF', '#F4F6F1', '#FBF6F6','#EDEFF2'], // 示例颜色
       selectedIndex: Storage.get("fiction_cssReadBackgroundColorIndex"), // 假设第三个颜色是选中状态
@@ -93,6 +98,20 @@ function toggleVisibility(target) {
       fontVisible.value = false
     }
   }
+}
+const getsavebook = async ()=>{
+    const res = await saveBookIdAPI(readid.value)
+    if(res.code==1){
+      ElMessage({
+        message: res.msg,
+        type: 'success',
+    });
+    }else{
+      ElMessage({
+        message: res.msg,
+        type: 'error',
+    });
+    }
 }
 const fontSize = ref(Storage.getData("cssReadFontSize","fiction_"))
 const fontSpace = ref(Storage.getData("cssReadFontSpace","fiction_"))

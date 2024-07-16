@@ -38,7 +38,7 @@
 
 
 <script lang="ts" setup >
-import {onMounted, ref} from 'vue'
+import {onMounted, ref,defineExpose} from 'vue'
 import { getFictionAPI } from '/src/apis/fictionAPI'
 import { getclick } from '/src/apis/rankinglistAPI'
 import {saveBookIdAPI} from '/src/apis/bookrankAPI'
@@ -74,6 +74,10 @@ const open1 = () => {
 onMounted(()=>{
     getFiction()
     getCkick()
+})
+// 重点！！这里需要使用defineExpose暴露出去
+defineExpose({
+  fictionData
 })
 </script>
 

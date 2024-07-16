@@ -126,20 +126,7 @@
         <template #footer>
               <div class="navigation-footer">
                     <el-form-item>
-                    <el-tooltip
-                            content="请阅读并勾选下方协议"
-                            placement="top-start"
-                            :auto-close="1000"
-                            :offset="10"
-                    >
-                      <el-checkbox
-                              class-name="agreement"
-                      />
-                    </el-tooltip>
 
-                    同意<a href="#" style="color: #30BAFCFF;">《用户协议》</a>和<a href="#" style="color: #30BAFCFF;"
-                          >《隐私政策》</a
-                          >
                   </el-form-item>
               </div>
         </template>
@@ -165,7 +152,6 @@ const register = reactive({
 })
 
 
-const Registermsg = ref('')
 const router = useRouter()
 const userInfo = ref({})
 
@@ -200,7 +186,18 @@ async function getUserInfo(){
 
 const getUserRegister = async ()=>{
     const res = await UserRegisterAPI(register)
-    Registermsg.value=res.msg
+    if(res.code == 1){
+        ElMessage({
+            message: res.msg,
+            type: 'success',
+        });
+        centerDialogVisible.value= false;
+    }else{
+        ElMessage({
+            message: res.msg,
+            type: 'error',
+        });
+    }
 }
 const getUserLogout = async ()=>{
     const res = await UserLogoutAPI()
@@ -212,12 +209,6 @@ const UserInfo = async ()=>{
         userInfo.value=res.data
     }
 }
-const Registermessage =()=>{
-    ElMessage({
-        message: Registermsg,
-        type: 'success',
-    });
-}
 
 
 
@@ -227,8 +218,6 @@ const loginbutton =()=>{
 }
 const registerbutton =()=>{
     getUserRegister();
-    Registermessage();
-    centerDialogVisible.value= false;
 }
 const handleCommand = (command: string | number | object) => {
     if (command === 'a'){
@@ -240,7 +229,10 @@ const handleCommand = (command: string | number | object) => {
     if (command === 'b'){
         getUserLogout()
         localStorage.removeItem('fiction_userInfo');
-        location.reload();
+        const newRoute = {
+            path: '/'// 新的路由路径，将 currentPage 作为路径的一部分
+        };
+        router.push(newRoute);
     }
 }
 const centerDialogVisible = ref(false)

@@ -15,8 +15,8 @@
         </el-menu-item>
     </router-link>
     <router-link to="/" class="link"><el-menu-item index="1" >首页</el-menu-item></router-link>
-    <router-link to="/category/nansheng/1" class="link"><el-menu-item index="2">分类</el-menu-item></router-link>
-    <router-link to="/rankinglist/nansheng/1/collect" class="link"> <el-menu-item index="3">排行榜</el-menu-item></router-link>
+    <router-link to="/category/1/1" class="link"><el-menu-item index="2">分类</el-menu-item></router-link>
+    <router-link to="/rankinglist/1/1/collect" class="link"> <el-menu-item index="3">排行榜</el-menu-item></router-link>
     <router-link to="/bookrank" class="link"><el-menu-item index="4">书架</el-menu-item></router-link>
     <Search />
      <template v-if="userObj">

@@ -25,7 +25,7 @@ let computedStyle = window.getComputedStyle(element);
 let width = computedStyle.getPropertyValue('width');
 readCentre.value=width
  if(!directoryVisible.value){
-    const  res = await getchapterAPI(readid.value)
+    const  res = await getchapterAPI(readid.value,route.params.tableName)
     chapterData.value = res.data
   }
   directoryVisible.value = !directoryVisible.value
@@ -102,7 +102,7 @@ const toggleOrder = () => {
                 </el-row>
                 <el-row>
                     <el-col :span="11" :offset="1" v-for="item in chapterData" :key="item.chapterId" :style="circleStyle(item.chapterId)" class="chapter-item">
-                        <router-link :to="'/read/'+item.chapterId" class="link" >
+                        <router-link :to="'/read/'+route.params.tableName+'/'+route.params.fictionId+'/'+item.chapterId" class="link" >
                             {{ item.title }}
 
                         </router-link>

@@ -32,7 +32,7 @@ import{getRecommendAPI} from "/src/apis/RecommendAPI";
 const recommendData = ref([])
 const route = useRoute()
 const getrecommend = async () =>{
-  const  res = await getRecommendAPI(6,"男生")
+  const  res = await getRecommendAPI(6,1)
   recommendData.value = res.data
 }
 const reloadPage = () => {

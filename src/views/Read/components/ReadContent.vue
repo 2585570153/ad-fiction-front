@@ -52,10 +52,10 @@ const root = document.documentElement;
 const text = ref('');
 
 const getSwitchChapter = (type) =>{
-  switchChapterAPI(type,route.params.id,"").then(response => {
+  switchChapterAPI(type,route.params.id,"",route.params.tableName,route.params.fictionId).then(response => {
     if( response.code==1){
       const newRoute = {
-            path: '/read/'+response.data.chapterId// 新的路由路径，将 currentPage 作为路径的一部分
+            path: '/read/'+route.params.tableName+'/'+route.params.fictionId+'/'+response.data.chapterId// 新的路由路径，将 currentPage 作为路径的一部分
         };
         router.push(newRoute);
     }else{
@@ -69,7 +69,7 @@ const getSwitchChapter = (type) =>{
 }
 
 const getcontent = async () =>{
-  const  res = await getcontentTXTAPI(route.params.id)
+  const  res = await getcontentTXTAPI(route.params.id,route.params.tableName)
     contentData.value = res.data
     // const url = res.data.content;
     // const txtResponse = await axios.get("http://static.aiheadn.cn/txt"+url, { responseType: "arraybuffer" });

@@ -24,7 +24,7 @@ const router = createRouter({
 
         },
         {
-            path: '/read/:id',
+            path: '/read/:tableName/:fictionId/:id',
             component:read
         },
         {

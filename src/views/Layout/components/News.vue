@@ -15,7 +15,7 @@ import {onMounted, ref} from "vue";
 import{getRecommendAPI} from "/src/apis/RecommendAPI";
 const recommendData = ref([])
 const getrecommend = async () =>{
-    const  res = await getRecommendAPI(4,"男生")
+    const  res = await getRecommendAPI(4,1)
     recommendData.value = res.data
 }
 

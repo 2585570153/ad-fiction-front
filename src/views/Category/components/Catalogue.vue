@@ -1,7 +1,7 @@
 <template>
   <div class="common-layout-category">
     <el-container>
-      <el-aside class="fiction-cateagory-my-aside" width="208px">
+      <el-aside class="fiction-cateagory-my-aside" width="209px">
 
         <el-tabs
             v-model="activeName"
@@ -9,48 +9,27 @@
             class="demo-tabs"
             @tab-click="handleClick"
         >
-          <el-tab-pane  name="nansheng">
-              <template v-slot:label>
-                  <router-link to="/category/nansheng/1" class="link">男生</router-link>
-              </template>
-            <div class="fiction-category-list-classify">
-              <router-link to="/category/nansheng/1/junshi" class="link"><div class="fiction-category-item-classify">军事</div></router-link>
-              <router-link to="/category/nansheng/1/dushi" class="link"><div class="fiction-category-item-classify">都市</div></router-link>
-              <router-link to="/category/nansheng/1/youxi" class="link"> <div class="fiction-category-item-classify">游戏</div></router-link>
-              <router-link to="/category/nansheng/1/xianxia" class="link"><div class="fiction-category-item-classify">仙侠</div></router-link>
-              <router-link to="/category/nansheng/1/xvanhuan" class="link"><div class="fiction-category-item-classify">玄幻</div></router-link>
-              <router-link to="/category/nansheng/1/lishi" class="link"><div class="fiction-category-item-classify">历史</div></router-link>
-              <router-link to="/category/nansheng/1/wuxia" class="link"><div class="fiction-category-item-classify">武侠</div></router-link>
-              <router-link to="/category/nansheng/1/kehuan" class="link"><div class="fiction-category-item-classify">科幻</div></router-link>
-              <router-link to="/category/nansheng/1/xvanyi" class="link"><div class="fiction-category-item-classify">悬疑</div></router-link>
-            </div>
-          </el-tab-pane>
-            <el-tab-pane  name="nvsheng">
-                <template v-slot:label>
-                    <router-link to="/category/nvsheng/1" class="link">女生</router-link>
-                </template>
-            <div class="fiction-category-list-classify">
-              <router-link to="/category/nvsheng/1/xyzt" class="link"><div class="fiction-category-item-classify">悬疑侦探</div></router-link>
-              <router-link to="/category/nvsheng/1/xdyq" class="link"> <div class="fiction-category-item-classify">现代言情</div></router-link>
-              <router-link to="/category/nvsheng/1/gdyq" class="link"><div class="fiction-category-item-classify">古代言情</div></router-link>
-              <router-link to="/category/nvsheng/1/yxjj" class="link"><div class="fiction-category-item-classify">游戏竞技</div></router-link>
-              <router-link to="/category/nvsheng/1/khkj" class="link"><div class="fiction-category-item-classify">科幻空间</div></router-link>
-              <router-link to="/category/nvsheng/1/xxqy" class="link"><div class="fiction-category-item-classify">仙侠奇缘</div></router-link>
-            </div>
-
-          </el-tab-pane>
-          <el-tab-pane  name="chuban">
-              <template v-slot:label>
-                  <router-link to="/category/chuban/1" class="link">出版</router-link>
-              </template>
-            <div class="fiction-category-list-classify">
-              <router-link to="/category/chuban/1/qingchun" class="link"><div class="fiction-category-item-classify">青春</div></router-link>
-              <router-link to="/category/chuban/1/xiaoshuo" class="link"> <div class="fiction-category-item-classify">小说</div></router-link>
-              <router-link to="/category/chuban/1/falv" class="link"><div class="fiction-category-item-classify">法律</div></router-link>
-              <router-link to="/category/chuban/1/wenxve" class="link"><div class="fiction-category-item-classify">文学</div></router-link>
-              <router-link to="/category/chuban/1/chuanji" class="link"><div class="fiction-category-item-classify">传记</div></router-link>
-            </div>
-          </el-tab-pane>
+        <el-tab-pane
+          v-for="tab in tabs"
+          :key="tab.code"
+          :name="tab.code"
+        >
+          <template v-slot:label>
+            <router-link :to="`/category/${tab.code}/1`" class="link">{{ tab.name }}</router-link>
+          </template>
+          <div class="fiction-category-list-classify">
+            <router-link
+              v-for="item in (categories[tab.code] || [])"
+              :key="item.code"
+              :to="`/category/${tab.code}/1/${item.code}`"
+              class="link"
+            >
+              <div class="fiction-category-item-classify"
+              :class="{ 'active-tab': activeTab === item.code }"
+              >{{ item.name }}</div>
+            </router-link>
+          </div>
+        </el-tab-pane>
         </el-tabs>
       </el-aside>
 
@@ -100,6 +79,7 @@
 import { onMounted,ref,watch} from 'vue'
 import type { TabsPaneContext } from 'element-plus'
 import { getCategoryAPI } from '/src/apis/fictionAPI'
+import { getclassifyAPI } from '/src/apis/classifyAPI'
 import {useRoute,useRouter} from "vue-router";
 const route = useRoute()
 const router = useRouter()
@@ -111,6 +91,28 @@ const data = ref({
 })
 const fictionList = ref([])
 const fictiontotal = ref('')
+const tabs = ref([]);
+const categories = ref({});
+const activeTab = ref(route.params.classify);
+const getclassify = async () => {
+      try {
+        // 获取主分类数据
+        const res = await getclassifyAPI(1, "");
+        tabs.value = res.data;
+
+        // 获取每个主分类的子分类数据
+        const categoryPromises = res.data.map(async (tab) => {
+          const resSon = await getclassifyAPI(2, tab.code);
+          categories.value[tab.code] = resSon.data;
+        });
+
+        // 等待所有子分类数据请求完成,如果任何一个请求失败，Promise.all 会立即返回失败的状态
+        await Promise.all(categoryPromises);
+
+      } catch (error) {
+        console.error("Failed to fetch classifications:", error);
+      }
+   };
 const newcurrentPage = ref(parseInt(route.params.id)); // 使用 ref 创建响应式的 currentPage 变量
 const getFiction = async () =>{
   const  res = await getCategoryAPI(data.value)
@@ -149,7 +151,8 @@ watch(
     }
 );
 onMounted(() => {
-  getFiction()
+  getFiction();
+  getclassify();
 
 });
 
@@ -241,9 +244,25 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
   width: 208px;
 }
 .fiction-category-item-classify{
-  padding-left: 25px;
-  padding-right: 25px;
-  padding-bottom: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 12px;
+  margin-top: 12px;
 
+
+}
+.active-tab {
+  background-color: #E7F5FF;
+  color: #0AAFFF;
+  border-radius: 10px;  /* 调整为椭圆形 */
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: inline-block;
 }
 </style>

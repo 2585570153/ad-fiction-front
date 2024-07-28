@@ -38,7 +38,7 @@
             <div class="title">
 
               <div class="chapter-item" v-for="item in chapterData">
-                <router-link :to="'/read/'+item.chapterId" class="link">
+                <router-link :to="'/read/'+tableName+'/'+route.params.id+'/'+item.chapterId" class="link">
                 {{ item.title }}
                 </router-link>
               </div>
@@ -59,7 +59,7 @@
 </template>
 
 <script lang="ts" setup>
-import {ref, computed, onMounted} from 'vue'
+import {ref, computed,watch,defineExpose} from 'vue'
 import SideColumn from "/src/views/detail/components/SideColumn.vue";
 import{getchapterAPI} from "/src/apis/chapterAPI";
 import{getcontentTXTAPI} from "/src/apis/contentAPI";
@@ -69,11 +69,11 @@ const chapterData = ref([])
 const contentData = ref({})
 const route = useRoute()
 const ascending = ref(true) // 初始状态为正序显示
-
+const tableName = ref('');  //ref控制通信
 const getchapter = async () =>{
-  const  res = await getchapterAPI(route.params.id)
+  const  res = await getchapterAPI(route.params.id,tableName.value)
   chapterData.value = res.data
-  const  resTXT = await getcontentTXTAPI(chapterData.value[0].chapterId)
+  const  resTXT = await getcontentTXTAPI(chapterData.value[0].chapterId,tableName.value)
   contentData.value = resTXT.data
   originalText.value = resTXT.data.content
 }
@@ -96,8 +96,11 @@ const toggleOrder = () => {
     //  originalText.value = res.data.content
 // }
 
-onMounted(() => {
-  getchapter();
+
+watch(() =>tableName?.value,(newVal) => {
+  if (newVal) {
+    getchapter();
+  }
 });
 
 const activeName = ref('first')
@@ -110,7 +113,10 @@ const formattedText = computed(() => {
   //  /\\r\\n\\r\\n/g
 });
 
-
+// 重点！！这里需要使用defineExpose暴露出去
+defineExpose({
+  tableName
+})
 </script>
 
 <style lang="scss" scoped>

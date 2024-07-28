@@ -2,11 +2,11 @@ import request from "@/utils/http";
 
 
 
-export function getRecommendAPI(id,bigclass){
+export function getRecommendAPI(count,bigclass){
     return request({
-        url: '/recommend/random',
+        url: '/fiction/random',
         params: {
-            id,
+            count,
             bigclass
         }
     })

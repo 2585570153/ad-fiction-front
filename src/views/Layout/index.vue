@@ -30,7 +30,7 @@
               </router-link>
             </div>
         </Boutique>
-        <RankingList href="url(../assets/rank-bg0.png)" bclass="nansheng"/>
+        <RankingList href="url(../assets/rank-bg0.png)" bclass="1"/>
           <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
           <Boutique title="女生精选" sub-title="强力推荐，品质保证" href="url(../assets/column-bg2.png)">
@@ -51,7 +51,7 @@
             </router-link>
           </div>
         </Boutique>
-        <RankingList href="url(../assets/rank-bg1.png)" bclass="nvsheng"/>
+        <RankingList href="url(../assets/rank-bg1.png)" bclass="2"/>
          <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
           <Boutique title="出版精选" sub-title="强力推荐，品质保证" href="url(../assets/column-bg3.png)">
@@ -72,7 +72,7 @@
             </router-link>
           </div>
         </Boutique>
-        <RankingList href="url(../assets/rank-bg2.png)" bclass="chuban"/>
+        <RankingList href="url(../assets/rank-bg2.png)" bclass="3"/>
           <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
       </el-main>
@@ -98,15 +98,15 @@ const recommendData2 = ref([])
 const recommendData3 = ref([])
 
 const getrecommend1 = async () =>{
-  const  res = await getRecommendAPI(6,"男生")
+  const  res = await getRecommendAPI(6,1)
   recommendData1.value = res.data
 }
 const getrecommend2 = async () =>{
-  const  res = await getRecommendAPI(6,"女生")
+  const  res = await getRecommendAPI(6,2)
   recommendData2.value = res.data
 }
 const getrecommend3 = async () =>{
-  const  res = await getRecommendAPI(6,"出版")
+  const  res = await getRecommendAPI(6,3)
   recommendData3.value = res.data
 }
 

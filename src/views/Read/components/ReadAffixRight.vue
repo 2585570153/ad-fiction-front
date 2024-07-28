@@ -118,10 +118,10 @@ const fontSpace = ref(Storage.getData("cssReadFontSpace","fiction_"))
 const route = useRoute();
 const router = useRouter();
 const getSwitchChapter = (type) =>{
-  switchChapterAPI(type,route.params.id,"").then(response => {
+  switchChapterAPI(type,route.params.id,"",route.params.tableName,route.params.fictionId).then(response => {
     if( response.code==1){
       const newRoute = {
-            path: '/read/'+response.data.chapterId// 新的路由路径，将 currentPage 作为路径的一部分
+            path: '/read/'+route.params.tableName+'/'+route.params.fictionId+'/'+response.data.chapterId// 新的路由路径，将 currentPage 作为路径的一部分
         };
         router.push(newRoute);
     }else{

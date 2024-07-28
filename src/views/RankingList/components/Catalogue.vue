@@ -10,49 +10,49 @@
       >
       <h3 class="fiction-rankinglist-h2">男生排行榜</h3>
         <el-menu-item index="1">
-            <router-link to="/rankinglist/nansheng/1/collect" class="link">
+            <router-link to="/rankinglist/1/1/collect" class="link">
           <span>收藏榜</span>
             </router-link>
         </el-menu-item>
         <el-menu-item index="2" >
-            <router-link to="/rankinglist/nansheng/1/click" class="link">
+            <router-link to="/rankinglist/1/1/click" class="link">
           <span>点击榜</span>
             </router-link>
         </el-menu-item>
         <el-menu-item index="3">
-            <router-link to="/rankinglist/nansheng/1/recommend" class="link">
+            <router-link to="/rankinglist/1/1/recommend" class="link">
           <span>推荐榜</span>
             </router-link>
         </el-menu-item>
               <h3 class="fiction-rankinglist-h2">女生排行榜</h3>
         <el-menu-item index="4">
-            <router-link to="/rankinglist/nvsheng/1/collect" class="link">
+            <router-link to="/rankinglist/2/1/collect" class="link">
           <span>收藏榜</span>
             </router-link>
         </el-menu-item>
         <el-menu-item index="5" >
-            <router-link to="/rankinglist/nvsheng/1/click" class="link">
+            <router-link to="/rankinglist/2/1/click" class="link">
           <span>点击榜</span>
             </router-link>
         </el-menu-item>
         <el-menu-item index="6">
-            <router-link to="/rankinglist/nvsheng/1/recommend" class="link">
+            <router-link to="/rankinglist/2/1/recommend" class="link">
           <span>推荐榜</span>
             </router-link>
         </el-menu-item>
               <h3 class="fiction-rankinglist-h2">出版排行榜</h3>
         <el-menu-item index="7">
-            <router-link to="/rankinglist/chuban/1/collect" class="link">
+            <router-link to="/rankinglist/3/1/collect" class="link">
           <span>收藏榜</span>
             </router-link>
         </el-menu-item>
         <el-menu-item index="8" >
-            <router-link to="/rankinglist/chuban/1/click" class="link">
+            <router-link to="/rankinglist/3/1/click" class="link">
           <span>点击榜</span>
             </router-link>
         </el-menu-item>
         <el-menu-item index="9">
-            <router-link to="/rankinglist/chuban/1/recommend" class="link">
+            <router-link to="/rankinglist/3/1/recommend" class="link">
           <span>推荐榜</span>
             </router-link>
         </el-menu-item>

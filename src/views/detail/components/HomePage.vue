@@ -19,14 +19,12 @@
             <div class="fictiontime">&nbsp;&nbsp;更新时间:{{ fictionData.creatTime }}</div>
           </div >
           <div class="bigclass" >
-            <el-tag size="large" class="fiction-detail-tag">{{fictionData.classify}}</el-tag>
-            <el-tag size="large" class="fiction-detail-tag">{{fictionData.bigclass}}</el-tag>
+            <el-tag size="large" class="fiction-detail-tag">{{classifyLabel}}</el-tag>
+            <el-tag size="large" class="fiction-detail-tag">{{bigclassLabel}}</el-tag>
           </div >
           <div class="brief">{{fictionData.brief}}...</div>
           <div class="get">
-            <router-link :to="'/read/'+fictionData.fictionId+'0001'"  class="link">
-            <el-button  color="#0BAEFDFF" class="button1"  size="large" type="primary" round>开始阅读</el-button>
-            </router-link>
+            <el-button  color="#0BAEFDFF" class="button1"  size="large" type="primary" round @click="getOneChapter">开始阅读</el-button>
             <el-button  color="#E0F3FCFF" class="button2" size="large" type="danger" round :plain="true" @click="open1">加入书架</el-button>
 <!--            <el-button   class="button3" size="large" type="danger" round>等待更新</el-button>-->
           </div>
@@ -38,13 +36,19 @@
 
 
 <script lang="ts" setup >
-import {onMounted, ref,defineExpose} from 'vue'
-import { getFictionAPI } from '/src/apis/fictionAPI'
+const props = defineProps({
+  fictionData: Object
+})
+import {onMounted, ref,computed} from 'vue'
 import { getclick } from '/src/apis/rankinglistAPI'
 import {saveBookIdAPI} from '/src/apis/bookrankAPI'
-import {useRoute} from "vue-router";
-const fictionData = ref({})
+import {getchapterOneAPI} from '/src/apis/chapterAPI'
+import {useRoute,useRouter} from "vue-router";
+import { ClassifyEnum, BigClassEnum } from '/src/enums/enums.js'; // 导入枚举
+
 const route = useRoute()
+const router = useRouter();
+
 const getsavebook = async ()=>{
     const res = await saveBookIdAPI(route.params.id)
     if(res.code==1){
@@ -59,10 +63,20 @@ const getsavebook = async ()=>{
     });
     }
 }
-const getFiction = async () =>{
-  const  res = await getFictionAPI(route.params.id)
-  fictionData.value = res.data
-  document.title = res.data.name+"-fiction中文网,小说,小说网,最新热门小说,阅读网站";
+const getOneChapter = () =>{
+  getchapterOneAPI(route.params.id,props.fictionData.tableName).then(response => {
+    if( response.code==1){
+      const newRoute = {
+            path: '/read/'+props.fictionData.tableName+'/'+route.params.id+'/'+response.data.chapterId// 新的路由路径，将 currentPage 作为路径的一部分
+        };
+        router.push(newRoute);
+    }else{
+      ElMessage({message: response.msg,type: 'error',});
+    }
+    })
+    .catch(error => {
+        console.error('API error:', error);
+    });
 }
 const getCkick = async () =>{
     await getclick(route.params.id)
@@ -70,17 +84,14 @@ const getCkick = async () =>{
 const open1 = () => {
     getsavebook();
 }
+    // 根据枚举转换 classify 和 bigclass
+const classifyLabel = computed(() => ClassifyEnum[props.fictionData.classify] || props.fictionData.classify);
+const bigclassLabel = computed(() => BigClassEnum[props.fictionData.bigclass] || props.fictionData.bigclass);
 
 onMounted(()=>{
-    getFiction()
     getCkick()
 })
-// 重点！！这里需要使用defineExpose暴露出去
-defineExpose({
-  fictionData
-})
 </script>
-
 <style scoped lang="scss">
 .main {
   display: flex;

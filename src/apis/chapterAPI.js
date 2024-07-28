@@ -1,14 +1,15 @@
 import request from "@/utils/http";
 
-export function getchapterAPI(id){
+export function getchapterAPI(id,tableName){
     return request({
         url: '/chapter/chapterid',
         params: {
-            id
+            id,
+            tableName
         }
     })
 }
-export function switchChapterAPI(type,chapterId,txt){
+export function switchChapterAPI(type,chapterId,txt,tableName,fictionId){
     return request({
         url: '/chapter/switch',
         method: 'POST',
@@ -19,7 +20,19 @@ export function switchChapterAPI(type,chapterId,txt){
         data: JSON.stringify({
             type: type,
             chapterId: chapterId,
-            txt: txt
+            txt: txt,
+            tableName: tableName,
+            fictionId: fictionId
         })
+    })
+}
+
+export function getchapterOneAPI(id,tableName){
+    return request({
+        url: '/chapter/one',
+        params: {
+            id,
+            tableName
+        }
     })
 }

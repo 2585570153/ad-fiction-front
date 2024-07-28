@@ -46,6 +46,9 @@ onMounted(() => {
 .header{
     padding: 0;
 }
+.el-main{
+    min-height: 520px;
+}
 .fiction-rankinglist-p{
     font-size: 14px;
     left: 50px;

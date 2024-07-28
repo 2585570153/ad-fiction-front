@@ -233,6 +233,7 @@ const handleCommand = (command: string | number | object) => {
             path: '/'// 新的路由路径，将 currentPage 作为路径的一部分
         };
         router.push(newRoute);
+        location.reload();
     }
 }
 const centerDialogVisible = ref(false)

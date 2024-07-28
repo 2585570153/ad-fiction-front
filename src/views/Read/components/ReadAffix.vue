@@ -40,9 +40,9 @@ const circleStyle = (id) => ({
 const toggleOrder = () => {
     ascending.value = !ascending.value;
     if (ascending.value) {
-      chapterData.value.sort((a, b) => a.chapterId - b.chapterId); // 正序排列
+      chapterData.value.sort((a, b) => a.chapterIndex - b.chapterIndex); // 正序排列
     } else {
-      chapterData.value.sort((a, b) => b.chapterId - a.chapterId); // 倒序排列
+      chapterData.value.sort((a, b) => b.chapterIndex - a.chapterIndex); // 倒序排列
     }
   }
   var userObj = Storage.get("fiction_userInfo");

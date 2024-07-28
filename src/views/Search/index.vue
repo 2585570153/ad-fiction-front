@@ -45,6 +45,9 @@ document.title = "搜索结果"+"-fiction中文网,小说,小说网,最新热门
 .header{
     padding: 0;
 }
+.el-main{
+    min-height: 520px;
+}
 .fiction-rankinglist-p{
     font-size: 14px;
     left: 50px;

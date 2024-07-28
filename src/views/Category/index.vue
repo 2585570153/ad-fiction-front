@@ -48,7 +48,9 @@ onMounted(() => {
 
   padding: 0 159px 0 159px;
 
-
+}
+.el-main{
+    min-height: 520px;
 }
 .header{
   padding: 0;

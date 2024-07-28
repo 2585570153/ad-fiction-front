@@ -32,7 +32,7 @@
             </template>
             <el-row justify="end">
                     <el-col :span="4">
-                        <el-button @click="toggleOrder" :icon="Sort">{{ ascending ? '倒序显示' : '正序显示' }}</el-button>
+                        <el-button @click="toggleOrder()" :icon="Sort">{{ ascending ? '倒序显示' : '正序显示' }}</el-button>
                     </el-col>
             </el-row>
             <div class="title">
@@ -80,9 +80,9 @@ const getchapter = async () =>{
 const toggleOrder = () => {
     ascending.value = !ascending.value;
     if (ascending.value) {
-      chapterData.value.sort((a, b) => a.chapterId - b.chapterId); // 正序排列
+      chapterData.value.sort((a, b) => a.chapterIndex - b.chapterIndex); // 正序排列
     } else {
-      chapterData.value.sort((a, b) => b.chapterId - a.chapterId); // 倒序排列
+      chapterData.value.sort((a, b) => b.chapterIndex - a.chapterIndex); // 倒序排列
     }
   }
 // const getcontent = async () =>{

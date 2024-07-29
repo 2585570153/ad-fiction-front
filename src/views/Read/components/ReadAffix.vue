@@ -4,10 +4,11 @@
 import {useReadStore} from "@/stores/readstores"
 import {storeToRefs} from "pinia";
 import{getchapterAPI} from "/src/apis/chapterAPI";
-import { ref,onMounted} from 'vue'
+import { ref,onMounted,nextTick} from 'vue'
 import {useRoute} from "vue-router";
 import {Sort} from '@element-plus/icons-vue'
 import Storage from "responsive-storage";
+import { ElScrollbar } from 'element-plus'
 
 const route = useRoute()
 const ReadStore = useReadStore();
@@ -16,6 +17,13 @@ const directoryVisible = ref(false)
 const chapterData = ref([])
 const readCentre = ref()
 const ascending = ref(true) // 初始状态为正序显示
+const scrollbarRef = ref();
+function inputSlider (item)  {
+    if(route.params.id == item.chapterId){
+        console.log(scrollbarRef.value); // 检查 scrollbarRef.value 的值
+        scrollbarRef.value.setScrollTop(Number(1000));
+    }
+}
 const getchapter = async () =>{
  // 获取元素对象
 let element = document.getElementById('readCentre');
@@ -45,8 +53,7 @@ const toggleOrder = () => {
       chapterData.value.sort((a, b) => b.chapterIndex - a.chapterIndex); // 倒序排列
     }
   }
-  var userObj = Storage.get("fiction_userInfo");
-
+var userObj = Storage.get("fiction_userInfo");
 </script>
 <template>
     <template v-if="userObj">
@@ -85,7 +92,13 @@ const toggleOrder = () => {
             </div>
         </el-affix>
         <el-affix :offset="260">
-            <el-popover :visible="directoryVisible" placement="right" :width="readCentre" title="目录" popper-class="read-directory-popover">
+            <el-popover 
+            :visible="directoryVisible" 
+            placement="right" 
+            :width="readCentre" 
+            title="目录" 
+            id="readPopover"
+            popper-class="read-directory-popover">
             <template #reference>
             <div class="fiction-read-left" @click="getchapter()">
                 <svg-icon  iconName="icon-menu" className="fiction-read-affix-ico" color="#57584b"></svg-icon>
@@ -95,19 +108,28 @@ const toggleOrder = () => {
             </div>
             </template>
             <template #default>
-                <el-row justify="end">
-                    <el-col :span="3">
-                        <el-button @click="toggleOrder" :icon="Sort">{{ ascending ? '倒序显示' : '正序显示' }}</el-button>
-                    </el-col>
-                </el-row>
-                <el-row>
-                    <el-col :span="11" :offset="1" v-for="item in chapterData" :key="item.chapterId" :style="circleStyle(item.chapterId)" class="chapter-item">
-                        <router-link :to="'/read/'+route.params.tableName+'/'+route.params.fictionId+'/'+item.chapterId" class="link" >
-                            {{ item.title }}
-
-                        </router-link>
+                <el-scrollbar max-height="100%" ref="scrollbarRef">
+                    <el-row justify="end">
+                        <el-col :span="3">
+                            <el-button @click="toggleOrder" :icon="Sort">{{ ascending ? '倒序显示' : '正序显示' }}</el-button>
                         </el-col>
-                </el-row>
+                    </el-row>
+                    <el-row>
+                        <el-col 
+                        :span="11" 
+                        :offset="1" 
+                        v-for="item in chapterData" 
+                        :key="item.chapterId" 
+                        :id="inputSlider(item)" 
+                        :style="circleStyle(item.chapterId)" 
+                        class="chapter-item">
+                            <router-link :to="'/read/'+route.params.tableName+'/'+route.params.fictionId+'/'+item.chapterId" class="link" >
+                                {{ item.title }}
+
+                            </router-link>
+                        </el-col>
+                    </el-row>
+                 </el-scrollbar>
             </template>
             </el-popover>
         </el-affix>

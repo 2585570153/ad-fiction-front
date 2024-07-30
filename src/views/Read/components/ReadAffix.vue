@@ -4,11 +4,10 @@
 import {useReadStore} from "@/stores/readstores"
 import {storeToRefs} from "pinia";
 import{getchapterAPI} from "/src/apis/chapterAPI";
-import { ref,onMounted,nextTick} from 'vue'
+import {ref,onMounted,nextTick} from 'vue'
 import {useRoute} from "vue-router";
 import {Sort} from '@element-plus/icons-vue'
 import Storage from "responsive-storage";
-import { ElScrollbar } from 'element-plus'
 
 const route = useRoute()
 const ReadStore = useReadStore();

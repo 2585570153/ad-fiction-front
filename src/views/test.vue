@@ -1,4 +1,5 @@
 <template>
+  <button @click="inputSlider(100)">Scroll to 100</button>
     <el-scrollbar ref="scrollbarRef" height="400px" always @scroll="scroll">
       <div ref="innerRef">
         <p v-for="item in 20" :key="item" class="scrollbar-demo-item">

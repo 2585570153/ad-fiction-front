@@ -9,9 +9,26 @@
         </div>
       </el-header>
       <el-main class="bodymain">
-        <Banner />
+        <!-- 轮播图 -->
+        <div>
+          <el-carousel
+              indicator-position="outside"
+              motion-blur
+              height="375px"
+              :interval="Number('10000')"
+              pause-on-hover
+              @change="onSlideChange"
+              arrow="always">
+            <el-carousel-item
+                v-for="item in bannerList"
+                :key="item.id">
+              <img :src="item.imgurl" alt="">
+            </el-carousel-item>
+          </el-carousel>
+        </div>
+        <!-- 文字小说推荐 -->
         <News/>
-
+        <!-- 图片小说推荐 -->
         <Boutique title="男生精选" sub-title="强力推荐，品质保证" href="url(../assets/column-bg1.png)">
             <div class="item"
                  v-for="item in recommendData1"
@@ -30,6 +47,7 @@
               </router-link>
             </div>
         </Boutique>
+        <!-- 排行榜添加 -->
         <RankingList href="url(../assets/rank-bg0.png)" bclass="1"/>
           <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -86,16 +104,17 @@
 <script setup>
 document.title = "fiction中文网-小说,小说网,最新热门小说-阅读网站";
 import Navigation from "@/views/Layout/components/Navigation.vue";
-import Banner from "@/views/Layout/components/Banner.vue";
 import News from "@/views/Layout/components/News.vue";
 import Boutique from "@/views/Layout/components/Boutique.vue";
 import RankingList from "@/views/Layout/components/RankingList.vue";
 import {onMounted, ref} from "vue";
 import{getRecommendAPI} from "/src/apis/RecommendAPI";
 import Fictionfooter from "@/components/fictionfooter.vue";
+import {getBanner} from "@/apis/bannerAPI";
 const recommendData1 = ref([])
 const recommendData2 = ref([])
 const recommendData3 = ref([])
+const bannerList = ref([]);
 
 const getrecommend1 = async () =>{
   const  res = await getRecommendAPI(6,1)
@@ -109,15 +128,37 @@ const getrecommend3 = async () =>{
   const  res = await getRecommendAPI(6,3)
   recommendData3.value = res.data
 }
-
+const getBanners = async () =>{
+  const res = await getBanner();
+  bannerList.value = res.data;
+  background(0);
+}
 function created(){
   window.scrollTo(0, 0);
 }
+//轮播图监听事件
+function onSlideChange(newIndex, oldIndex) {
+  background(newIndex);
+}
+function background(index) {
 
+  const bodyMain = document.querySelector('.bodymain');
+
+  // 获取新的背景图片 URL
+  const imageUrl = bannerList.value[index].imgurl; // 确保 bannerList 结构正确
+
+  // 设置背景图像
+  bodyMain.style.backgroundImage = `url(${imageUrl})`;
+
+  // 设置背景图像的尺寸和位置
+  bodyMain.style.backgroundSize = '100% auto'; // 让宽度始终为100%，高度自动调整
+  bodyMain.style.backgroundPosition = 'top center'; // 从顶部开始，并水平居中
+}
 onMounted(() => {
   getrecommend1();
   getrecommend2();
   getrecommend3();
+  getBanners();
   created();
 });
 </script>
@@ -127,7 +168,7 @@ onMounted(() => {
 .bodymain{
 
   padding: 30px 159px;
-  background-image: url(../assets/bg.jpg);
+  // background-image: url(../assets/bg.jpg);
   background-repeat: no-repeat;
 
 }
@@ -218,5 +259,21 @@ img{
 .fiction-footer{
   height: 250px;
   padding: 0;
+}
+
+.el-carousel__item h3 {
+  display: flex;
+  color: #475669;
+  opacity: 0.75;
+  line-height: 300px;
+  margin: 0;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #a90a10;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #1f82f3;
 }
 </style>

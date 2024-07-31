@@ -27,6 +27,7 @@
           </el-carousel>
         </div>
         <!-- 文字小说推荐 -->
+        <br>
         <News/>
         <!-- 图片小说推荐 -->
         <Boutique title="男生精选" sub-title="强力推荐，品质保证" href="url(../assets/column-bg1.png)">
@@ -145,14 +146,15 @@ function background(index) {
   const bodyMain = document.querySelector('.bodymain');
 
   // 获取新的背景图片 URL
-  const imageUrl = bannerList.value[index].imgurl; // 确保 bannerList 结构正确
+  const imageUrl = bannerList.value[index].imgVague; // 确保 bannerList 结构正确
 
-  // 设置背景图像
-  bodyMain.style.backgroundImage = `url(${imageUrl})`;
+// 设置背景图像和渐变
+bodyMain.style.background = `linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%), url(${imageUrl})`;
 
-  // 设置背景图像的尺寸和位置
-  bodyMain.style.backgroundSize = '100% auto'; // 让宽度始终为100%，高度自动调整
-  bodyMain.style.backgroundPosition = 'top center'; // 从顶部开始，并水平居中
+// 设置背景图像的尺寸和位置
+bodyMain.style.backgroundSize = '100% 600px'; // 让宽度始终为100%，高度自动调整
+bodyMain.style.backgroundPosition = 'top center'; // 从顶部开始，并水平居中
+bodyMain.style.backgroundRepeat = 'no-repeat'; // 防止背景图像重复
 }
 onMounted(() => {
   getrecommend1();

@@ -7,7 +7,7 @@
         <router-link :to="'/detail/'+item.fictionId" class="link">
         <div class="sidecolumn-imges">
         <div class="sidecolumn-caption">&nbsp;免费&nbsp;</div>
-        <img  :src= item.prcture>
+        <img  v-lazy= item.prcture>
       </div>
         </router-link>
         <router-link :to="'/detail/'+item.fictionId"  class="link">

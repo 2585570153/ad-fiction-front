@@ -6,7 +6,7 @@
                     <div class="fiction-search-item">
                         <div class="fiction-search-imges">
                             <div class="fiction-search-caption">&nbsp;免费&nbsp;</div>
-                            <img class="fiction-search-img" :src= item.prcture>
+                            <img class="fiction-search-img" v-lazy= item.prcture>
                         </div>
                     </div>
                 </el-aside>

@@ -22,7 +22,7 @@
             <el-carousel-item
                 v-for="item in bannerList"
                 :key="item.id">
-              <img :src="item.imgurl" alt="">
+              <img v-lazy="item.imgurl" alt="">
             </el-carousel-item>
           </el-carousel>
         </div>
@@ -37,7 +37,7 @@
               <router-link :to="'/detail/'+item.fictionId" class="link">
               <div class="home-imges">
                 <div class="caption">&nbsp;免费&nbsp;</div>
-                <img  :src=item.prcture>
+                <img  v-lazy=item.prcture>
               </div>
               <div class="font1">{{ item.name }}</div>
               <div class="font2">{{item.brief}}</div>
@@ -59,7 +59,7 @@
             <router-link :to="'/detail/'+item.fictionId" class="link">
             <div class="home-imges">
               <div class="caption">&nbsp;免费&nbsp;</div>
-              <img  :src=item.prcture>
+              <img  v-lazy=item.prcture>
             </div>
             <div class="font1">{{ item.name }}</div>
             <div class="font2">{{item.brief}}</div>
@@ -80,7 +80,7 @@
             <router-link :to="'/detail/'+item.fictionId" class="link">
             <div class="home-imges">
               <div class="caption">&nbsp;免费&nbsp;</div>
-              <img  :src=item.prcture>
+              <img  v-lazy=item.prcture>
             </div>
             <div class="font1">{{ item.name }}</div>
             <div class="font2">{{item.brief}}</div>

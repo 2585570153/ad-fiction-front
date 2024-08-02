@@ -69,7 +69,7 @@
               <div class="fiction-cateagory-item">
                 <div class="fiction-cateagory-imges">
                   <div class="fiction-cateagory-caption">&nbsp;免费&nbsp;</div>
-                  <img class="fiction-cateagory-img" :src= item.prcture>
+                  <img class="fiction-cateagory-img" v-lazy= item.prcture>
                 </div>
               </div>
             </el-aside>

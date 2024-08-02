@@ -4,7 +4,7 @@
             <router-link :to="'/detail/'+item.fictionId" class="link">
             <div class="bookrank-imges">
                 <div class="bookrank-caption">&nbsp;免费&nbsp;</div>
-                <img class="bookrank-img" :src= "item.prcture">
+                <img class="bookrank-img" v-lazy= "item.prcture">
             </div>
             <div class="bookrank-name">{{ item.name }}</div>
             <div class="bookrank-author">{{ item.author }}</div>

@@ -65,7 +65,7 @@ onMounted(() => {
             <div class="text2">{{item.author}}</div>
             <div class="imgbook1">
                 <div class="book1"></div>
-                <img  class="book2" :src="item.prcture" alt="">
+                <img  class="book2" v-lazy="item.prcture" alt="">
             </div>
         </div>
           <div class="book" v-if="index !== 0 && index !== 1 && index !== 2">
@@ -75,7 +75,7 @@ onMounted(() => {
               <div class="text2">{{item.author}}</div>
               <div class="imgbook1">
                   <div class="book1"></div>
-                  <img  class="book2" :src="item.prcture" alt="">
+                  <img  class="book2" v-lazy="item.prcture" alt="">
               </div>
           </div>
           </router-link>
@@ -102,7 +102,7 @@ onMounted(() => {
                       <div class="text2">{{item.author}}</div>
                       <div class="imgbook1">
                           <div class="book1"></div>
-                          <img  class="book2" :src="item.prcture" alt="">
+                          <img  class="book2" v-lazy="item.prcture" alt="">
                       </div>
                   </div>
                   <div class="book" v-if="index !== 0 && index !== 1 && index !== 2">
@@ -112,7 +112,7 @@ onMounted(() => {
                       <div class="text2">{{item.author}}</div>
                       <div class="imgbook1">
                           <div class="book1"></div>
-                          <img  class="book2" :src="item.prcture" alt="">
+                          <img  class="book2" v-lazy="item.prcture" alt="">
                       </div>
                   </div>
               </router-link>
@@ -139,7 +139,7 @@ onMounted(() => {
                       <div class="text2">{{item.author}}</div>
                       <div class="imgbook1">
                           <div class="book1"></div>
-                          <img  class="book2" :src="item.prcture" alt="">
+                          <img  class="book2" v-lazy="item.prcture" alt="">
                       </div>
                   </div>
                   <div class="book" v-if="index !== 0 && index !== 1 && index !== 2">
@@ -149,7 +149,7 @@ onMounted(() => {
                       <div class="text2">{{item.author}}</div>
                       <div class="imgbook1">
                           <div class="book1"></div>
-                          <img  class="book2" :src="item.prcture" alt="">
+                          <img  class="book2" v-lazy="item.prcture" alt="">
                       </div>
                   </div>
               </router-link>

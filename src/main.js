@@ -5,6 +5,9 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import router from "./router";
 import SvgIcon from './components/SvgIcon/SvgIcon.vue'
 import Storage from "responsive-storage";
+//图片懒加载
+import VueLazyload from 'vue-lazyload';
+
 import './assets/iconfont/iconfont.js';
 //引入初始化文件样式
 import '@/styles/common.scss'
@@ -32,6 +35,12 @@ app.use(Storage, {
 
 
     }
+  });
+
+  app.use(VueLazyload, {
+    // 配置选项（可选）
+    loading: '/assets/loading.gif', // 加载中的占位图
+    // error: '/path/to/error-image.png' // 错误时的占位图
   });
 app.mount('#app')
 

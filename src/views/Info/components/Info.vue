@@ -105,7 +105,17 @@
                 公告信息
                 <el-divider />
                 <div class="announcement-container">
-                    <p>暂无公告</p>
+                    <p v-if="announcements.length === 0">暂无公告</p>
+                    <div class="announcement-else" v-else>
+                        <div v-for="announcement in announcements" :key="announcement.id" class="announcement-item">
+                            <h4>{{ announcement.content }}</h4>
+                            <el-divider />
+                            <p class="announcement-footer">
+                            <span>{{ announcement.name }}</span>
+                            <span> - {{ formatDate(announcement.createTime) }}</span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </el-main>
@@ -120,15 +130,18 @@
   Finished,
   ChatSquare
 } from '@element-plus/icons-vue'
-  import {UserInfoAPI,UserUpdateAPI,UserPasswordAPI} from '/src/apis/userAPI';
+  import {UserInfoAPI,UserUpdateAPI,UserPasswordAPI,headImgApI} from '/src/apis/userAPI';
+  import {getNotice} from '/src/apis/noticeAPI';
+
+  import Storage from "responsive-storage";
   const previewImage = ref(''); // 预览图片的Base64格式数据
 
-  const activeMenu = ref('1')
+  const activeMenu = ref('1');
+  const announcements = ref([]);
   const userInfo = ref({
       nickname: '',
       username: '',
       email: '',
-      headPortrait: '',
       gender: '',
       phone: '',
     });
@@ -171,7 +184,7 @@ const handlePasswordChange = () => {
 
 const beforeAvatarUpload = (file) => {
     const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
-    const isLt2M = file.size / 1024 / 1024 < 2;
+    const isLt2M = file.size / 1024 / 1024 < 1;
 
     if (!isJPG) {
         ElMessage({
@@ -181,22 +194,60 @@ const beforeAvatarUpload = (file) => {
     }
     if (!isLt2M) {
         ElMessage({
-            message: '上传头像图片大小不能超过 2MB!',
+            message: '上传头像图片大小不能超过 1MB!',
             type: 'error',
         });
     }
     if(isJPG && isLt2M){
-            const reader = new FileReader();
-            reader.readAsDataURL(file)
-            reader.onload = () => {
-                console.log(reader.result)
-                userInfo.value.headPortrait = reader.result;
-                previewImage.value = reader.result; // 设置预览图片的Base64格式数据
-            };        
+
+        headImgApI(file).then(res => {
+            if (res.code == 1) {
+            ElMessage({message: '头像上传成功!',type: 'success',});
+            var userObj = Storage.get("fiction_userInfo");
+            userObj.headPortrait = res.data 
+            Storage.set("fiction_userInfo",userObj)
+            //延迟加载
+            setTimeout(function () {
+                //刷新页面
+                location.reload();
+            }, 2000);
+            } else {
+            ElMessage({message: res.msg,type: 'error',});
+            }
+        });
     }
     
     return false;
 };
+
+// const beforeAvatarUpload = (file) => {
+//     const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
+//     const isLt2M = file.size / 1024 / 1024 < 2;
+
+//     if (!isJPG) {
+//         ElMessage({
+//             message: '上传头像图片只能是 JPG 或 PNG 格式!',
+//             type: 'error',
+//         });
+//     }
+//     if (!isLt2M) {
+//         ElMessage({
+//             message: '上传头像图片大小不能超过 2MB!',
+//             type: 'error',
+//         });
+//     }
+//     if(isJPG && isLt2M){
+//             const reader = new FileReader();
+//             reader.readAsDataURL(file)
+//             reader.onload = () => {
+//                 console.log(reader.result)
+//                 userInfo.value.headPortrait = reader.result;
+//                 previewImage.value = reader.result; // 设置预览图片的Base64格式数据
+//             };        
+//     }
+    
+//     return false;
+// };
 const saveInfo = () => {
     UserUpdateAPI(userInfo.value).then(res => {
         if (res.code == 1) {
@@ -210,8 +261,23 @@ const saveInfo = () => {
         console.error('API error:', error);
     });
     };
+const fetchAnnouncements = async () => {
+    const res = await getNotice()
+    if (res.code === 1) {
+      announcements.value = res.data;
+    }else {
+      ElMessage({message: res.msg,type: 'error',});
+    }
+};
+
+const formatDate = (dateString) => {
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  return new Date(dateString).toLocaleDateString('zh-CN', options);
+};
+
   onMounted(() => {
     UserInfo();
+    fetchAnnouncements();
   });
 
   </script>
@@ -285,5 +351,26 @@ p{
     
   font-size: 14px;
   font-weight: bold;
+}
+.announcement-else {
+width: 100%;;
+}
+.announcement-item {
+  margin-bottom: 20px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.announcement-item h4 {
+  margin: 0;
+  font-size: 16px;
+}
+.announcement-item p {
+  margin: 4px 0 0;
+}
+.announcement-footer {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

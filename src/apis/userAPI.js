@@ -56,3 +56,15 @@ export const UserPasswordAPI = (params) => {
         data: JSON.stringify(params)
     });
 };
+export const headImgApI = (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    return request({
+        url: '/user/img',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        },
+        data: formData
+    });
+};

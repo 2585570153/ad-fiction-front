@@ -19,39 +19,38 @@
     <router-link to="/rankinglist/1/1/collect" class="link"> <el-menu-item index="3">排行榜</el-menu-item></router-link>
     <router-link to="/bookrank" class="link"><el-menu-item index="4">书架</el-menu-item></router-link>
     <Search />
-     <template v-if="userObj">
+    <template v-if="userObj">
+        <el-menu-item >
+            <div class="navigation-user">
+                <div class="navigation-user-name">{{userObj.data.nickname}}</div>
+                <el-dropdown @command="handleCommand">
+                    <span>
+                    <el-avatar
+                            :src=userObj.data.headPortrait
+                    />
+                    </span>
+                    <template #dropdown>
+                        <el-dropdown-menu>
+                            <el-dropdown-item command="a">个人中心</el-dropdown-item>
+                            <el-dropdown-item divided command="b">退出登录</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </template>
+
+                </el-dropdown>
+            </div>
+        </el-menu-item>
+    </template>
+    <template v-else>
     <el-menu-item >
-        <div class="navigation-user">
-            <div class="navigation-user-name">{{userObj.data.nickname}}</div>
-            <el-dropdown @command="handleCommand">
-                <span>
-                <el-avatar
-                        :src=userObj.data.headPortrait
-                />
-                </span>
-                <template #dropdown>
-                    <el-dropdown-menu>
-                        <el-dropdown-item command="a">个人中心</el-dropdown-item>
-                        <el-dropdown-item divided command="b">退出登录</el-dropdown-item>
-                    </el-dropdown-menu>
-                </template>
-
-            </el-dropdown>
-        </div>
+        <br>
+        <el-button
+                type="primary"
+                class="register-btn"
+                @click="centerDialogVisible = true"
+        >登录/注册
+        </el-button>
     </el-menu-item>
-
-     </template>
-      <template v-else>
-      <el-menu-item >
-          <br>
-          <el-button
-                  type="primary"
-                  class="register-btn"
-                  @click="centerDialogVisible = true"
-          >登录/注册
-          </el-button>
-      </el-menu-item>
-      </template>
+    </template>
   </el-menu>
 
 
@@ -266,7 +265,7 @@ centerDialogVisible
 .el-menu--horizontal {
     display: flex;
     flex-wrap: nowrap;
-    border-bottom: solid 1px var(--el-menu-border-color);
+    border-bottom: none;
     border-right: none;
     flex-direction: row;
     justify-content: flex-start;

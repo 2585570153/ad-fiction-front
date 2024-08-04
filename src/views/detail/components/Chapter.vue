@@ -3,7 +3,7 @@
     <el-container>
       <el-aside width="850px">
 
-        <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+        <el-tabs v-model="activeName" class="demo-tabs">
           <el-tab-pane class="mulu"  name="first">
             <template #label>
               <span class="custom-tabs-label"><span>书籍详细</span></span>
@@ -11,7 +11,7 @@
             <el-card shadow="never" class="box-card">
               <div class="card-header">
             <span class="pinlun">书友吧</span>
-            <el-button class="button" text>快去评论吧 ></el-button>
+            <el-button class="button" @click="getComment()" text>快去评论吧 ></el-button>
               </div>
             </el-card>
 
@@ -64,10 +64,11 @@ import SideColumn from "/src/views/detail/components/SideColumn.vue";
 import{getchapterAPI} from "/src/apis/chapterAPI";
 import{getcontentTXTAPI} from "/src/apis/contentAPI";
 import {Sort} from '@element-plus/icons-vue'
-import {useRoute} from "vue-router";
+import {useRoute,useRouter} from "vue-router";
 const chapterData = ref([])
 const contentData = ref({})
-const route = useRoute()
+const route = useRoute();
+const router = useRouter();
 const ascending = ref(true) // 初始状态为正序显示
 const tableName = ref('');  //ref控制通信
 const getchapter = async () =>{
@@ -96,7 +97,12 @@ const toggleOrder = () => {
     //  originalText.value = res.data.content
 // }
 
-
+const getComment = () =>{
+    const newRoute = {
+          path: '/comment/'+route.params.id// 新的路由路径，将 currentPage 作为路径的一部分
+      };
+    router.push(newRoute);
+}
 watch(() =>tableName?.value,(newVal) => {
   if (newVal) {
     getchapter();
@@ -162,7 +168,17 @@ defineExpose({
 .chapter-text{
   width: 870px;
   margin-top:20px;
+  text-indent: 3em; /* 设置缩进量，可以根据需要调整 */
   line-height: 3;
   font-size: 19px;
+}
+.el-main {
+    margin-left: 20px;
+    display: block;
+    flex: 1;
+    flex-basis: auto;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 10px;
 }
 </style>

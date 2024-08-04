@@ -105,7 +105,7 @@
                 公告信息
                 <el-divider />
                 <div class="announcement-container">
-                    <p v-if="announcements.length === 0">暂无公告</p>
+                    <p v-if="!announcements ||announcements.length === 0">暂无公告</p>
                     <div class="announcement-else" v-else>
                         <div v-for="announcement in announcements" :key="announcement.id" class="announcement-item">
                             <h4>{{ announcement.content }}</h4>
@@ -204,7 +204,7 @@ const beforeAvatarUpload = (file) => {
             if (res.code == 1) {
             ElMessage({message: '头像上传成功!',type: 'success',});
             var userObj = Storage.get("fiction_userInfo");
-            userObj.headPortrait = res.data 
+            userObj.data.headPortrait = res.data 
             Storage.set("fiction_userInfo",userObj)
             //延迟加载
             setTimeout(function () {
@@ -331,12 +331,12 @@ const formatDate = (dateString) => {
     width: 800px;
 }
 .announcement-container {
-    display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-    color: #6b778c;
+  color: #6b778c;
 }
 .avatar {
   width: 130px;

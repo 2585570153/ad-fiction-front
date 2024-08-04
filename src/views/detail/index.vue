@@ -50,7 +50,7 @@ onMounted(() => {
   getFiction();
 });
 //使用 watch 监测 homePage.value?.fictionData?.bigclass 的变化。确保 fictionData 存在并且能够被监测。
-watch(() => fictionData?.bigclass, (newVal) => {
+watch(() => fictionData.value?.bigclass, (newVal) => {
   if (newVal === '1') {
     document.querySelector('.bodymain').style.backgroundImage = 'linear-gradient(to bottom, #EBF4F9 0px, #FFFFFF 350px, transparent 100%)'; /* 从上到下的渐变，颜色从白色到浅灰色再到透明 */
   } else if (newVal === '2') {

@@ -11,6 +11,7 @@ import mobile from '@/mobile/index.vue';
 import search from '@/views/Search/index.vue';
 import bookrank from '@/views/BookRack/index.vue';
 import test from '@/views/test.vue';
+import Comment from '@/views/Comment/index.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -56,6 +57,10 @@ const router = createRouter({
         {
             path: '/info',
             component:Info
+        },
+        {
+            path: '/comment/:id',
+            component:Comment
         },
         {
             path: '/test',

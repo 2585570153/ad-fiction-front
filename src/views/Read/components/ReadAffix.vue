@@ -128,7 +128,7 @@ var userObj = Storage.get("fiction_userInfo");
                         <el-button @click="inputSlider()" :icon="Expand">当前章节</el-button>
                     </el-col>
                 </el-row>
-                <el-scrollbar max-height="100%" ref="scrollbarRef">
+                <el-scrollbar height="80vh" ref="scrollbarRef">
                     <el-row>
                         <el-col 
                         :span="11" 

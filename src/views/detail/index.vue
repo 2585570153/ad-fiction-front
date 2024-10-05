@@ -13,7 +13,7 @@
         <p class="fiction-detail-p">首页 > 小说详情</p>
         <HomePage :fictionData="fictionData" />
         <br><br>
-        <Chapter ref="chapter"/>
+        <Chapter ref="chapter" :fictionData="fictionData"/>
       </el-main>
         <el-footer class="fiction-footer">
             <fictionfooter />

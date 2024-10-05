@@ -59,12 +59,15 @@
 </template>
 
 <script lang="ts" setup>
-import {ref, computed,watch,defineExpose} from 'vue'
+import {ref, computed,watch,defineExpose,onMounted} from 'vue'
 import SideColumn from "/src/views/detail/components/SideColumn.vue";
 import{getchapterAPI} from "/src/apis/chapterAPI";
 import{getcontentTXTAPI} from "/src/apis/contentAPI";
 import {Sort} from '@element-plus/icons-vue'
 import {useRoute,useRouter} from "vue-router";
+const props = defineProps({
+  fictionData: Object
+})
 const chapterData = ref([])
 const contentData = ref({})
 const route = useRoute();
@@ -72,11 +75,15 @@ const router = useRouter();
 const ascending = ref(true) // 初始状态为正序显示
 const tableName = ref('');  //ref控制通信
 const getchapter = async () =>{
-  const  res = await getchapterAPI(route.params.id,tableName.value)
+  console.log(props.fictionData.tableName)
+  const  res = await getchapterAPI(route.params.id,props.fictionData.tableName)
   chapterData.value = res.data
-  const  resTXT = await getcontentTXTAPI(chapterData.value[0].chapterId,tableName.value)
+  // 父组件通过ref控制通信
+  // const  resTXT = await getcontentTXTAPI(chapterData.value[0].chapterId,tableName.value)
+  const  resTXT = await getcontentTXTAPI(chapterData.value[0],props.fictionData.tableName)
   contentData.value = resTXT.data
   originalText.value = resTXT.data.content
+  console.log(props.fictionData.tableName)
 }
 const toggleOrder = () => {
     ascending.value = !ascending.value;
@@ -103,12 +110,12 @@ const getComment = () =>{
       };
     router.push(newRoute);
 }
-watch(() =>tableName?.value,(newVal) => {
+//检测传递值的变化
+watch(() =>props.fictionData.tableName,(newVal) => {
   if (newVal) {
     getchapter();
   }
 });
-
 const activeName = ref('first')
 const originalText = ref('');
 const formattedText = computed(() => {
@@ -118,7 +125,6 @@ const formattedText = computed(() => {
   // /\r\n\r\n/g 这个是一会用的
   //  /\\r\\n\\r\\n/g
 });
-
 // 重点！！这里需要使用defineExpose暴露出去
 defineExpose({
   tableName

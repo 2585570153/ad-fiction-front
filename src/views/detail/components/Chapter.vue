@@ -80,7 +80,8 @@ const getchapter = async () =>{
   chapterData.value = res.data
   // 父组件通过ref控制通信
   // const  resTXT = await getcontentTXTAPI(chapterData.value[0].chapterId,tableName.value)
-  const  resTXT = await getcontentTXTAPI(chapterData.value[0],props.fictionData.tableName)
+  // 按接口定义，第一个参数应为章节 id，而不是整个章节对象
+  const  resTXT = await getcontentTXTAPI(chapterData.value[0].chapterId,props.fictionData.tableName)
   contentData.value = resTXT.data
   originalText.value = resTXT.data.content
   console.log(props.fictionData.tableName)

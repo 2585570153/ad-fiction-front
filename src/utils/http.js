@@ -3,7 +3,7 @@ import Storage from "responsive-storage";
 
 // 创建axios实例
 const httpInstance = axios.create({
-    baseURL: 'http://49.232.143.13:8080/api',
+    baseURL: 'http://127.0.0.1:8080/api',
     timeout: 5000
 })
 

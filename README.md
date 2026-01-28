@@ -1,4 +1,4 @@
-![](https://cos.aiheadn.cn/md/2023/logo2.png)
+![](assets/logo2.png)
 
 ## 项目简介
 
@@ -46,6 +46,36 @@ https://docs.apipost.net/docs/2d7a593fb864000?locale=zh-cn
 
 ---
 
+### 项目预览图
+
+![Snipaste_2026-01-28_23-47-50](assets/Snipaste_2026-01-28_23-47-50.webp)
+
+![Snipaste_2026-01-28_23-48-08](assets/Snipaste_2026-01-28_23-48-08.webp)
+
+![Snipaste_2026-01-28_23-48-24](assets/Snipaste_2026-01-28_23-48-24.webp)
+
+![Snipaste_2026-01-28_23-48-36](assets/Snipaste_2026-01-28_23-48-36.webp)
+
+![Snipaste_2026-01-28_23-48-51](assets/Snipaste_2026-01-28_23-48-51.webp)
+
+![Snipaste_2026-01-28_23-56-32](assets/Snipaste_2026-01-28_23-56-32.webp)
+
+![Snipaste_2026-01-28_23-56-57](assets/Snipaste_2026-01-28_23-56-57.webp)
+
+![Snipaste_2026-01-28_23-57-02](assets/Snipaste_2026-01-28_23-57-02.webp)
+
+![Snipaste_2026-01-28_23-57-21](assets/Snipaste_2026-01-28_23-57-21.webp)
+
+![Snipaste_2026-01-28_23-57-30](assets/Snipaste_2026-01-28_23-57-30.webp)
+
+![Snipaste_2026-01-28_23-57-52](assets/Snipaste_2026-01-28_23-57-52.webp)
+
+![Snipaste_2026-01-28_23-58-03](assets/Snipaste_2026-01-28_23-58-03.webp)
+
+![Snipaste_2026-01-28_23-58-45](assets/Snipaste_2026-01-28_23-58-45.webp)
+
+![Snipaste_2026-01-28_23-59-58](assets/Snipaste_2026-01-28_23-59-58.webp)
+
 ## 技术栈
 
 - **框架**：Vue 3  
@@ -55,8 +85,6 @@ https://docs.apipost.net/docs/2d7a593fb864000?locale=zh-cn
 - **UI 组件库**：Element Plus  
 - **网络请求**：Axios  
 - **辅助库**：`vue-lazyload`、`responsive-storage`、SCSS
-
----
 
 ## 目录结构概览
 
@@ -114,7 +142,7 @@ ad-fiction-front/
 
 ## 本地开发与构建
 
-确保已经安装 Node.js（推荐 16+）和 npm / pnpm。
+确保已经安装 Node.js（推荐 16+）和 npm
 
 ```bash
 cd ad-fiction-front
@@ -153,5 +181,3 @@ npm run preview
 - **接口环境切换**：在 `http.js` 或相关配置文件中切换后端 Base URL。  
 - **主题/样式调整**：在 `src/styles/var.scss` 和 `src/styles/element/index.scss` 中调色和组件样式。  
 - **新增页面**：在 `src/views` 中创建新页面组件，并在 `src/router/index.js` 中注册路由即可。  
-
-如需与整体系统的完整架构和运行顺序，请查阅根仓库中 `fiction/README.md`（后端 README 中包含三端联动的总览和架构图）。

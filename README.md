@@ -1,5 +1,16 @@
 ![](assets/logo2.png)
 
+<p align="center">
+<img src="https://img.shields.io/badge/Node.js-16.10.0-339933?style=for-the-badge&logo=node.js&logoColor=white" />
+<img src="https://img.shields.io/badge/Java-1.8-007396?style=for-the-badge&logo=java&logoColor=white" />
+<img src="https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+<img src="https://img.shields.io/badge/Spring%20Boot-2.7.11-brightgreen?style=for-the-badge&logo=spring-boot" />
+<img src="https://img.shields.io/badge/MySQL-8.x-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
+<img src="https://img.shields.io/badge/Redis-7.x-DC382D?style=for-the-badge&logo=redis&logoColor=white" />
+<img src="https://img.shields.io/badge/Vue.js-3.5.18-4FC08D?style=for-the-badge&logo=vue.js" />
+<img src="https://img.shields.io/badge/Scrapy-2.x-0A9E06?style=for-the-badge" />
+</p>
+
 ## 项目简介
 
 本系统是一个完整的 **在线小说网站解决方案**，由三个彼此解耦又紧密协作的子项目组成：
@@ -29,6 +40,14 @@
 ## 开发接口说明
 
 https://docs.apipost.net/docs/2d7a593fb864000?locale=zh-cn
+
+## 数据源
+
+项目中所涉及的图片和文本内容已经打包成zip包 可供下载
+
+https://www.123865.com/s/Z7EcVv-QaStd
+
+项目开发阶段采用123云盘的webdev方式上传，并且通过直链鉴权方式提供阅览，后续可自行开发其他存储方式
 
 ## 系列开发笔记
 
